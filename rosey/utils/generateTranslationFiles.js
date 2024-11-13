@@ -253,14 +253,7 @@ function getInputConfig(inputKey, page, inputTranslationObj) {
         redo: true,
         removeformat: true,
         copyformatting: true,
-        bulletedlist: true,
-        numberedlist: true,
         blockquote: true,
-        superscript: true,
-        subscript: true,
-        code: true,
-        horizontalrule: true,
-        image: true,
       }
     : {};
 
