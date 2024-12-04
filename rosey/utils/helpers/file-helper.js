@@ -1,4 +1,5 @@
 import fs from "fs";
+import YAML from "yaml";
 async function readFileWithFallback(filepath, fallbackString) {
   try {
     const buffer = await fs.promises.readFile(filepath);
@@ -22,4 +23,24 @@ async function isDirectory(filepath) {
   return stat.isDirectory();
 }
 
-export { readFileWithFallback, readJsonFromFile, isDirectory };
+async function readContentPage(filePath) {
+  if (!filePath) {
+    console.log("No filepath provided");
+    return;
+  }
+  const buffer = await fs.promises.readFile(filePath);
+  const fileData = buffer.toString("utf-8");
+  const [emptySpace, frontmatter, ...restOfPage] = fileData.split("---");
+  const fileDataFrontMatterString = frontmatter;
+  // Allow for <hr> in body content which is represented by '---' in markdown and ruins our split
+  const fileDataBodyContent =
+    restOfPage.length === 1 ? restOfPage : restOfPage.join("---");
+  const fileFrontMatter = YAML.parse(fileDataFrontMatterString);
+
+  return {
+    frontmatter: fileFrontMatter,
+    bodyContent: fileDataBodyContent,
+  };
+}
+
+export { readFileWithFallback, readJsonFromFile, isDirectory, readContentPage };
