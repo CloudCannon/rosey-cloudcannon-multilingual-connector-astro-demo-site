@@ -257,7 +257,7 @@ const locales = process.env.LOCALES?.split(",");
         "---",
         YAML.stringify(frontmatter),
         "---",
-        bodyContent.trim(),
+        bodyContent?.trim(),
       ].join("\n");
 
       await fs.promises.writeFile(contentPageFilePath, pageToWrite);
