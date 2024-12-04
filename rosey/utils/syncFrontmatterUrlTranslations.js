@@ -2,24 +2,19 @@ import fs from "fs";
 import path from "path";
 import YAML from "yaml";
 import dotenv from "dotenv";
-import { NodeHtmlMarkdown } from "node-html-markdown";
 import {
   isDirectory,
   readFileWithFallback,
   readJsonFromFile,
   readContentPage,
 } from "./helpers/file-helper.js";
-import {
-  updateDeeplyNestedObjectsAndReturnTranslations,
-  updateDeeplyNestedTranslationObjects,
-} from "./helpers/block-walkers.js";
 
 dotenv.config();
 
 const localesDir = "./rosey/locales";
 const translationsDir = "./rosey/translations";
 const contentDirPath = "./src/content/"; // The content dir of .md pages to sync data files to
-const excludedContentPages = "config.ts";
+const excludedContentPages = ["config.ts"];
 const locales = process.env.LOCALES?.split(",");
 
 (async () => {
