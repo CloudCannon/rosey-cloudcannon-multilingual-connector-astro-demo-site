@@ -7,6 +7,7 @@ import {
   isDirectory,
   readFileWithFallback,
   readJsonFromFile,
+  readContentPage,
 } from "./helpers/file-helper.js";
 import {
   updateDeeplyNestedObjectsAndReturnTranslations,
@@ -264,21 +265,3 @@ const locales = process.env.LOCALES?.split(",");
     })
   );
 })();
-
-async function readContentPage(filePath) {
-  if (!filePath) {
-    console.log("No filepath provided");
-    return;
-  }
-  const buffer = await fs.promises.readFile(filePath);
-  const fileData = buffer.toString("utf-8");
-  const fileDataSplit = fileData.split("---");
-  const fileDataFrontMatterString = fileDataSplit[1];
-  const fileDataBodyContent = fileDataSplit[2];
-  const fileFrontMatter = YAML.parse(fileDataFrontMatterString);
-
-  return {
-    frontmatter: fileFrontMatter,
-    bodyContent: fileDataBodyContent,
-  };
-}

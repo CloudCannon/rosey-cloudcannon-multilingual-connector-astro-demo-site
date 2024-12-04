@@ -283,7 +283,6 @@ const componentDirectoryPath = "./src/components/";
           ].join("\n");
           fileContentsArray[0] = formattedFrontMatter;
           const newContentFileToWrite = fileContentsArray.join("\n");
-          // console.log(fileContentsArray[0].content_blocks);
           await fs.promises.writeFile(filePath, newContentFileToWrite);
         }
       }
