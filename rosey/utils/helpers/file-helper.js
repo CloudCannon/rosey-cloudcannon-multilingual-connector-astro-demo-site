@@ -34,7 +34,7 @@ async function readContentPage(filePath) {
   const fileDataFrontMatterString = frontmatter;
   // Allow for <hr> in body content which is represented by '---' in markdown and ruins our split
   const fileDataBodyContent =
-    restOfPage.length === 1 ? restOfPage : restOfPage.join("---");
+    restOfPage.length === 1 ? restOfPage[0] : restOfPage.join("---");
   const fileFrontMatter = YAML.parse(fileDataFrontMatterString);
 
   return {
