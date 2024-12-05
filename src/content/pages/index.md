@@ -14,12 +14,12 @@ seo:
   open_graph_type: null
   no_index: false
 translations:
-  selected_page_translation: fr-FR
+  selected_page_translation: es-ES
   translate_es_ES: true
   url_translation_es_ES: index.html
   translate_de_DE: true
   url_translation_de_DE: index.html
-  translate_fr_FR: true
+  translate_fr_FR: false
   url_translation_fr_FR: index.html
 content_blocks:
   - _bookshop_name: hero
@@ -43,7 +43,7 @@ content_blocks:
           non-technical people to maintain a multilingual site.
         es_ES_translation: >-
           Un sitio de demostración para el conector multilingüe
-          Rosey-CloudCannon para Astro.
+          Rosey-CloudCannon para Astro. **QA'd!**
 
 
           Este contenido y sus traducciones son editables desde el editor
@@ -162,4 +162,5 @@ content_blocks:
       alt_text: An image
     flipped: true
     button: null
+
 ---
