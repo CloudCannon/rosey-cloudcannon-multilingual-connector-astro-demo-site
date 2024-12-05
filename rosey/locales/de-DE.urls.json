@@ -17,6 +17,6 @@
 	},
 	"blog/a-test-page/index.html": {
 		"original": "blog/a-test-page/index.html",
-		"value": "blog/a-test-page/index.html"
+		"value": "blog/a-changed-page-url-via-data/index.html"
 	}
 }
