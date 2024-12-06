@@ -123,7 +123,6 @@ async function generateOutgoingTranslationFile(
   // );
   // Looping through base.json keys
   inputKeys.forEach((key) => {
-    // TODO:
     // If any of their pages are included in pagesToTranslate, add the key to translationObject like normal
     // If none of their pages are included in pagesToTranslate, don't add the key to translationObject
     const keyData = inputFileKeyData[key];
