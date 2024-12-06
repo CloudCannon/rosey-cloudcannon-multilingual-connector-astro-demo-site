@@ -1,0 +1,31 @@
+locales:
+  - es-ES
+  - de-DE
+  - fr-FR
+
+base_url: https://wooden-fjord.cloudvent.net/
+
+smartling:
+  enabled: false
+  dev_project_id: 403ba8439
+  dev_user_identifier: widgoyosxtbfsfonzlcfejabgndxst
+
+visual_editing:
+  visual_editor_syncing: true # Toggle syncing between data file and frontmatter
+  display_orphaned_translations: true # Display translations in data file not present anywhere in frontmatter
+  content_directory: './src/content'
+  excluded_files:
+    - config.ts
+  translations_object_name: 'translations'
+  components_directory: './src/components'
+
+tagged_body_content_elements: 
+  - "p"
+  - "li"
+  - "h1"
+  - "h2"
+  - "h3"
+  - "h4"
+  - "h5"
+  - "h6"
+
