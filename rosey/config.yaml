@@ -1,24 +1,36 @@
+# Which locales to translate
+# Can be whichever format needed, eg. es-ES, es-es, es
 locales:
   - es-ES
   - de-DE
   - fr-FR
 
+# The url used for the links to an on-page preview in data file
+# This should be the url of your staging site, which CloudCannon gives you automatically
 base_url: https://wooden-fjord.cloudvent.net/
 
+# Smartling integration
+# Keep this false unless using a Smartling account for automatic translations
+# Needs an api key in env variables to work
+# Sign up to Smartling for an account using machine translations
 smartling:
   enabled: false
   dev_project_id: 403ba8439
   dev_user_identifier: widgoyosxtbfsfonzlcfejabgndxst
 
 visual_editing:
-  visual_editor_syncing: true # Toggle syncing between data file and frontmatter
-  display_orphaned_translations: true # Display translations in data file not present anywhere in frontmatter
+  # Toggle syncing between data file and frontmatter
+  visual_editor_syncing: true 
+  # Display translations in data file not present anywhere in frontmatter
+  # This should be turned on if you haven't made the data files visible to editors
+  display_orphaned_translations: true 
+  # Content page related settings
   content_directory: './src/content'
   excluded_files:
     - config.ts
   translations_object_name: 'translations'
-  components_directory: './src/components'
 
+# What elements to add data-rosey tags to when parsing body content
 tagged_body_content_elements: 
   - "p"
   - "li"
@@ -29,3 +41,6 @@ tagged_body_content_elements:
   - "h5"
   - "h6"
 
+migrator_settings:
+  components_directory: './src/components'
+  
