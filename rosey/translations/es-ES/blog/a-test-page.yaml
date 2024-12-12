@@ -2,18 +2,16 @@ urlTranslation: blog/a-test-page/index.html
 _inputs:
   $:
     type: object
-    comment: "[See
-      blog/a-test-page/](https://normal-meek.cloudvent.net/blog/a-test-page/)"
+    comment: "[See blog/a-test-page/](undefinedblog/a-test-page/)"
     options:
       place_groups_below: false
       groups:
         - heading: Still to translate (es-ES)
-          comment: Text to translate on
-            [blog/a-test-page/](https://normal-meek.cloudvent.net/blog/a-test-page/)
+          comment: Text to translate on [blog/a-test-page/](undefinedblog/a-test-page/)
           inputs: []
         - heading: Already translated (es-ES)
           comment: Text already translated on
-            [blog/a-test-page/](https://normal-meek.cloudvent.net/blog/a-test-page/)
+            [blog/a-test-page/](undefinedblog/a-test-page/)
           inputs:
             - blog
             - markdown:a-new-test-paragraph-that-has-to-be-long-enough-words-but-end-in-a-certain-way
@@ -32,8 +30,7 @@ _inputs:
     hidden: false
     type: text
     options: {}
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/blog/a-test-page/#:~:text=Blog)"
+    comment: "[See on page](undefinedblog/a-test-page/#:~:text=Blog)"
   markdown:a-new-test-paragraph-that-has-to-be-long-enough-words-but-end-in-a-certain-way:
     label: A new. test paragraph that has to be long ...
     hidden: false
@@ -47,17 +44,8 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/blog/a-test-page/#:~:text=A%20new\
-      ,a%20certain)"
+    comment: "[See on page](undefinedblog/a-test-page/#:~:text=A%20new,a%20certain)"
     context:
       open: false
       title: Untranslated Text
@@ -77,17 +65,10 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
     comment: "[See on
-      page](https://normal-meek.cloudvent.net/blog/a-test-page/#:~:text=All%20y\
-      ou%20have,There%20we%20are)"
+      page](undefinedblog/a-test-page/#:~:text=All%20you%20have,There%20we%20ar\
+      e)"
     context:
       open: false
       title: Untranslated Text
@@ -108,17 +89,8 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/blog/a-test-page/#:~:text=Another\
-      %20code%20block:)"
+    comment: "[See on page](undefinedblog/a-test-page/#:~:text=Another%20code%20block:)"
   markdown:here's-a-new-paragraph-with-a-link-in-the-content-editor:
     label: Here’s a new paragraph with a link in the ...
     hidden: false
@@ -132,17 +104,10 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
     comment: "[See on
-      page](https://normal-meek.cloudvent.net/blog/a-test-page/#:~:text=Here%E2\
-      %80%99s%20a%20new,the%20content%20editor)"
+      page](undefinedblog/a-test-page/#:~:text=Here%E2%80%99s%20a%20new,the%20c\
+      ontent%20editor)"
     context:
       open: false
       title: Untranslated Text
@@ -162,17 +127,10 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
     comment: "[See on
-      page](https://normal-meek.cloudvent.net/blog/a-test-page/#:~:text=Mix%20y\
-      our%20color,it%20all%20day)"
+      page](undefinedblog/a-test-page/#:~:text=Mix%20your%20color,it%20all%20da\
+      y)"
     context:
       open: false
       title: Untranslated Text
@@ -194,17 +152,10 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
     comment: "[See on
-      page](https://normal-meek.cloudvent.net/blog/a-test-page/#:~:text=Take%20\
-      your%20time,just%20playing%20here)"
+      page](undefinedblog/a-test-page/#:~:text=Take%20your%20time,just%20playin\
+      g%20here)"
     context:
       open: false
       title: Untranslated Text
@@ -227,17 +178,10 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
     comment: "[See on
-      page](https://normal-meek.cloudvent.net/blog/a-test-page/#:~:text=We%E2%8\
-      0%99ll%20throw%20some,make%20in%20school)"
+      page](undefinedblog/a-test-page/#:~:text=We%E2%80%99ll%20throw%20some,mak\
+      e%20in%20school)"
     context:
       open: false
       title: Untranslated Text
@@ -259,17 +203,9 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
     comment: "[See on
-      page](https://normal-meek.cloudvent.net/blog/a-test-page/#:~:text=We%20ha\
-      ve%20a,to%20use%20it)"
+      page](undefinedblog/a-test-page/#:~:text=We%20have%20a,to%20use%20it)"
     context:
       open: false
       title: Untranslated Text
@@ -289,17 +225,10 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
     comment: "[See on
-      page](https://normal-meek.cloudvent.net/blog/a-test-page/#:~:text=We%20ha\
-      ve%20all,be%20your%20guide)"
+      page](undefinedblog/a-test-page/#:~:text=We%20have%20all,be%20your%20guid\
+      e)"
     context:
       open: false
       title: Untranslated Text
@@ -312,17 +241,15 @@ _inputs:
     hidden: false
     type: text
     options: {}
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/blog/a-test-page/#:~:text=RSS%20F\
-      eed)"
+    comment: "[See on page](undefinedblog/a-test-page/#:~:text=RSS%20Feed)"
   yay-we-support-snippets-now!:
     label: Yay, we support snippets now!
     hidden: false
     type: textarea
     options: {}
     comment: "[See on
-      page](https://normal-meek.cloudvent.net/blog/a-test-page/#:~:text=Yay,%20\
-      we%20support%20snippets%20now!)"
+      page](undefinedblog/a-test-page/#:~:text=Yay,%20we%20support%20snippets%2\
+      0now!)"
 blog: Blog
 markdown:a-new-test-paragraph-that-has-to-be-long-enough-words-but-end-in-a-certain-way:
   Un nuevo párrafo de prueba que tiene que ser lo suficientemente largo como

@@ -2,16 +2,15 @@ urlTranslation: blog/index.html
 _inputs:
   $:
     type: object
-    comment: "[See blog/](https://normal-meek.cloudvent.net/blog/)"
+    comment: "[See blog/](undefinedblog/)"
     options:
       place_groups_below: false
       groups:
         - heading: Still to translate (es-ES)
-          comment: Text to translate on [blog/](https://normal-meek.cloudvent.net/blog/)
+          comment: Text to translate on [blog/](undefinedblog/)
           inputs: []
         - heading: Already translated (es-ES)
-          comment: Text already translated on
-            [blog/](https://normal-meek.cloudvent.net/blog/)
+          comment: Text already translated on [blog/](undefinedblog/)
           inputs:
             - blog
             - rss-feed
@@ -20,12 +19,12 @@ _inputs:
     hidden: false
     type: text
     options: {}
-    comment: "[See on page](https://normal-meek.cloudvent.net/blog/#:~:text=Blog)"
+    comment: "[See on page](undefinedblog/#:~:text=Blog)"
   rss-feed:
     label: RSS Feed
     hidden: false
     type: text
     options: {}
-    comment: "[See on page](https://normal-meek.cloudvent.net/blog/#:~:text=RSS%20Feed)"
+    comment: "[See on page](undefinedblog/#:~:text=RSS%20Feed)"
 blog: Blog
 rss-feed: Fuente RSS

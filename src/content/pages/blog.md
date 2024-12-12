@@ -16,4 +16,5 @@ seo:
   author_twitter_handle: null
   open_graph_type: website
   no_index: false
+
 ---

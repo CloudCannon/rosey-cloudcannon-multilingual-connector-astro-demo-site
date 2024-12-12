@@ -2,15 +2,15 @@ urlTranslation: index.html
 _inputs:
   $:
     type: object
-    comment: "[See ](https://normal-meek.cloudvent.net/)"
+    comment: "[See ](undefined)"
     options:
       place_groups_below: false
       groups:
         - heading: Still to translate (fr-FR)
-          comment: Text to translate on [](https://normal-meek.cloudvent.net/)
+          comment: Text to translate on [](undefined)
           inputs: []
         - heading: Already translated (fr-FR)
-          comment: Text already translated on [](https://normal-meek.cloudvent.net/)
+          comment: Text already translated on [](undefined)
           inputs:
             - blog
             - cloudcannon
@@ -28,27 +28,25 @@ _inputs:
     hidden: false
     type: text
     options: {}
-    comment: "[See on page](https://normal-meek.cloudvent.net/#:~:text=Blog)"
+    comment: "[See on page](undefined#:~:text=Blog)"
   cloudcannon:
     label: CloudCannon
     hidden: false
     type: text
     options: {}
-    comment: "[See on page](https://normal-meek.cloudvent.net/#:~:text=CloudCannon)"
+    comment: "[See on page](undefined#:~:text=CloudCannon)"
   github:
     label: GitHub
     hidden: false
     type: text
     options: {}
-    comment: "[See on page](https://normal-meek.cloudvent.net/#:~:text=GitHub)"
+    comment: "[See on page](undefined#:~:text=GitHub)"
   keep-what-you-need-delete-the-rest:
     label: Keep what you need. Delete the rest.
     hidden: false
     type: textarea
     options: {}
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=Keep%20what%20you,Delete\
-      %20the%20rest)"
+    comment: "[See on page](undefined#:~:text=Keep%20what%20you,Delete%20the%20rest)"
   markdown:a-demo-site-for-the-rosey-cloudcannon-multilingual-connector-for-astro:
     label: A demo site for the Rosey-CloudCannon Mult...
     hidden: false
@@ -62,17 +60,8 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=A%20demo%20site,Connecto\
-      r%20for%20Astro)"
+    comment: "[See on page](undefined#:~:text=A%20demo%20site,Connector%20for%20Astro)"
     context:
       open: false
       title: Untranslated Text
@@ -91,17 +80,8 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=It's%20cold,a%20nice%20c\
-      olor)"
+    comment: "[See on page](undefined#:~:text=It's%20cold,a%20nice%20color)"
     context:
       open: false
       title: Untranslated Text
@@ -121,17 +101,8 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=That%20is%20when,little%\
-      20tree%20here)"
+    comment: "[See on page](undefined#:~:text=That%20is%20when,little%20tree%20here)"
     context:
       open: false
       title: Untranslated Text
@@ -151,17 +122,9 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
     comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=They%20say%20_everything\
-      _,upset%20the%20critics)"
+      page](undefined#:~:text=They%20say%20_everything_,upset%20the%20critics)"
     context:
       open: false
       title: Untranslated Text
@@ -181,17 +144,9 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
     comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=This%20content%20and,a%2\
-      0multilingual%20site)"
+      page](undefined#:~:text=This%20content%20and,a%20multilingual%20site)"
     context:
       open: false
       title: Untranslated Text
@@ -205,14 +160,14 @@ _inputs:
     type: textarea
     options: {}
     comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=Rosey%20-%20CloudCannon%\
-      20Multilingual%20Connector)"
+      page](undefined#:~:text=Rosey%20-%20CloudCannon%20Multilingual%20Connecto\
+      r)"
   rss-feed:
     label: RSS Feed
     hidden: false
     type: text
     options: {}
-    comment: "[See on page](https://normal-meek.cloudvent.net/#:~:text=RSS%20Feed)"
+    comment: "[See on page](undefined#:~:text=RSS%20Feed)"
 blog: Blog
 cloudcannon: CloudCannon
 github: GitHub
