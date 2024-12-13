@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 npx @bookshop/generate
 
+# TODO: Move everything into one file and run from there to make this less intense
+# TODO: Move migrator into here and toggle on/off
 if [[ $TRANSLATE != "true" ]];
 then
   echo "🌹🌹  Generating base.json from built site with Rosey"

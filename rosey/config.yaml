@@ -39,6 +39,10 @@ visual_editing:
   excluded_files:
     - config.ts
   translations_object_name: 'translations'
+  migrator_settings:
+    # TODO: Toggle migrator on and off
+    enabled: false
+    components_directory: './src/components'
 
 # What elements to add data-rosey tags to when parsing body content
 tagged_body_content_elements: 
@@ -51,6 +55,5 @@ tagged_body_content_elements:
   - "h5"
   - "h6"
 
-migrator_settings:
-  components_directory: './src/components'
+
   

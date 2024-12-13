@@ -8,6 +8,7 @@ import {
   readFileWithFallback,
   readJsonFromFile,
   readContentPage,
+  readConfigFile,
 } from "./helpers/file-helper.js";
 import {
   updateDeeplyNestedObjectsAndReturnTranslations,
@@ -21,13 +22,17 @@ const nhm = new NodeHtmlMarkdown(
   /* customCodeBlockTranslators (optional) */ undefined
 );
 
-const contentDirPath = "./src/content/pages/"; // The content dir of .md pages to sync data files to
-const dataFilesDirPath = "./rosey/translations";
-const baseJsonFile = "./rosey/base.json";
-const roseyLocalesDirPath = "./rosey/locales/";
-const locales = process.env.LOCALES?.split(",");
-
 (async () => {
+  const configData = await readConfigFile("./rosey/config.yaml");
+  // const contentDirPath = "./src/content/pages/"; // The content dir of .md pages to sync data files to
+  const contentDirPath = configData.visual_editing.content_directory; // TODO: Test whether the omitted pages affects anything - The content dir of .md pages to sync data files to
+  // const dataFilesDirPath = "./rosey/translations";
+  const dataFilesDirPath = configData.rosey_paths.translations_dir_path;
+  // const baseJsonFile = "./rosey/base.json";
+  const baseJsonFile = configData.rosey_paths.rosey_base_file_path;
+  // const roseyLocalesDirPath = "./rosey/locales/";
+  const roseyLocalesDirPath = configData.rosey_paths.locales_dir_path;
+  const locales = process.env.LOCALES?.split(",");
   const baseJsonData = await readJsonFromFile(baseJsonFile);
   const baseJsonKeys = Object.keys(baseJsonData.keys);
   const translationsDirFiles = await fs.promises.readdir(dataFilesDirPath);
