@@ -44,7 +44,7 @@ content_blocks:
           non-technical people to maintain a multilingual site.
 
 
-          A *new* paragraph to test this still works?
+          A *new* paragraph to test this still works? With Smartling enabled.
         es_ES_translation: >-
           Un sitio de demostración para el conector multilingüe
           Rosey-CloudCannon para Astro.

@@ -1,61 +1,38 @@
-# Which locales to translate
-# Can be whichever format needed, eg. es-ES, es-es, es
 locales:
   - es-ES
   - de-DE
   - fr-FR
-
-# The url used for the links to an on-page preview in data file
-# This should be the url of your staging site, which CloudCannon gives you automatically
 base_url: https://wooden-fjord.cloudvent.net/
-
 rosey_paths:
-  rosey_base_file_path: "./rosey/base.json"
-  rosey_base_urls_file_path: "./rosey/base.urls.json"
-  translations_dir_path: "./rosey/translations"
-  locales_dir_path: "./rosey/locales"
-  
-
-# Smartling integration
-# Keep this false unless using a Smartling account for automatic translations
-# Needs an api key in env variables to work
-# Sign up to Smartling for an account using machine translations
+  rosey_base_file_path: ./rosey/base.json
+  rosey_base_urls_file_path: ./rosey/base.urls.json
+  translations_dir_path: ./rosey/translations
+  locales_dir_path: ./rosey/locales
 smartling:
-  enabled: false
+  enabled: true
   dev_project_id: 403ba8439
   dev_user_identifier: widgoyosxtbfsfonzlcfejabgndxst
-  incoming_translations_dir: "./rosey/smartling-translations/"
-  outgoing_translations_file_path: "./rosey/outgoing-smartling-translations.json"
-  outgoing_translation_file_uri: "/rosey/translations/"
-
+  incoming_translations_dir: ./rosey/smartling-translations/
+  outgoing_translations_file_path: ./rosey/outgoing-smartling-translations.json
+  outgoing_translation_file_uri: /rosey/translations/
 visual_editing:
-  # Toggle syncing between data file and frontmatter
-  visual_editor_syncing: true 
-  # Display translations in data file not present anywhere in frontmatter
-  # This should be turned on if you haven't made the data files visible to editors
-  display_orphaned_translations: true 
-  # Content page related settings
-  content_directory: './src/content'
-  # TODO: Add this to migrateToVisualEditing and syncFrontMatterTranslation
-  scope_syncing: ['content_blocks']
+  visual_editor_syncing: true
+  display_orphaned_translations: true
+  content_directory: ./src/content
+  scope_syncing:
+    - content_blocks
   excluded_files:
     - config.ts
-  translations_object_name: 'translations'
+  translations_object_name: translations
   migrator_settings:
-    # TODO: Toggle migrator on and off
     enabled: false
-    components_directory: './src/components'
-
-# What elements to add data-rosey tags to when parsing body content
-tagged_body_content_elements: 
-  - "p"
-  - "li"
-  - "h1"
-  - "h2"
-  - "h3"
-  - "h4"
-  - "h5"
-  - "h6"
-
-
-  
+    components_directory: ./src/components
+tagged_body_content_elements:
+  - p
+  - li
+  - h1
+  - h2
+  - h3
+  - h4
+  - h5
+  - h6
