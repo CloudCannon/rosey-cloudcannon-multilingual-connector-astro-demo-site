@@ -9,6 +9,10 @@ locales:
 # This should be the url of your staging site, which CloudCannon gives you automatically
 base_url: https://wooden-fjord.cloudvent.net/
 
+rosey_paths:
+  rosey_base_file_path: "./rosey/base.json"
+  
+
 # Smartling integration
 # Keep this false unless using a Smartling account for automatic translations
 # Needs an api key in env variables to work
@@ -17,6 +21,9 @@ smartling:
   enabled: false
   dev_project_id: 403ba8439
   dev_user_identifier: widgoyosxtbfsfonzlcfejabgndxst
+  incoming_translations_dir: "./rosey/smartling-translations/"
+  outgoing_translations_file_path: "./rosey/outgoing-smartling-translations.json"
+  outgoing_translation_file_uri: "/rosey/translations/"
 
 visual_editing:
   # Toggle syncing between data file and frontmatter
