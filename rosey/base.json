@@ -45,6 +45,14 @@
       },
       "total": 1
     },
+    "markdown:a-new-paragraph-to-test-this-still-works?": {
+      "original": "A <em>new</em> paragraph to test this still works?",
+      "value": null,
+      "pages": {
+        "index.html": 1
+      },
+      "total": 1
+    },
     "markdown:a-new-test-paragraph-that-has-to-be-long-enough-words-but-end-in-a-certain-way": {
       "original": "A new. test paragraph that has to be long enough words but end in a certain, way.",
       "value": null,

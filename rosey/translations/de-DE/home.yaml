@@ -8,7 +8,8 @@ _inputs:
       groups:
         - heading: Still to translate (de-DE)
           comment: Text to translate on [](https://wooden-fjord.cloudvent.net/)
-          inputs: []
+          inputs:
+            - markdown:a-new-paragraph-to-test-this-still-works?
         - heading: Already translated (de-DE)
           comment: Text already translated on [](https://wooden-fjord.cloudvent.net/)
           inputs:
@@ -71,6 +72,28 @@ _inputs:
       title: Untranslated Text
       icon: translate
       content: A demo site for the Rosey-CloudCannon Multilingual Connector for Astro.
+  markdown:a-new-paragraph-to-test-this-still-works?:
+    label: A _new_ paragraph to test this still works...
+    hidden: false
+    type: markdown
+    options:
+      bold: true
+      format: p h1 h2 h3 h4
+      italic: true
+      link: true
+      undo: true
+      redo: true
+      removeformat: true
+      copyformatting: true
+      blockquote: true
+    comment: "[See on
+      page](https://wooden-fjord.cloudvent.net/#:~:text=A%20_new_%20paragraph,t\
+      his%20still%20works)"
+    context:
+      open: false
+      title: Untranslated Text
+      icon: translate
+      content: A _new_ paragraph to test this still works?
   markdown:it's-cold-but-it's-beautiful-get-tough-with-it-get-strong-brown-is-such-a-nice-color:
     label: It's cold, but it's beautiful. Get tough w...
     hidden: false
@@ -183,6 +206,7 @@ cloudcannon: CloudCannon
 github: GitHub (Englisch)
 keep-what-you-need-delete-the-rest: Behalten Sie, was Sie brauchen Löschen Sie den Rest
 markdown:a-demo-site-for-the-rosey-cloudcannon-multilingual-connector-for-astro: Eine Demo-Site für den Rosey-CloudCannon Multilingual Connector für Astro.
+markdown:a-new-paragraph-to-test-this-still-works?: ""
 markdown:it's-cold-but-it's-beautiful-get-tough-with-it-get-strong-brown-is-such-a-nice-color:
   Es ist kalt, aber es ist schön. Werden Sie hart damit, werden Sie stark. Braun
   ist so eine schöne Farbe.
