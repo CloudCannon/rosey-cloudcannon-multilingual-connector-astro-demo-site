@@ -36,6 +36,8 @@ visual_editing:
   display_orphaned_translations: true 
   # Content page related settings
   content_directory: './src/content'
+  # TODO: Add this to migrateToVisualEditing and syncFrontMatterTranslation
+  scope_syncing: ['content_blocks']
   excluded_files:
     - config.ts
   translations_object_name: 'translations'
