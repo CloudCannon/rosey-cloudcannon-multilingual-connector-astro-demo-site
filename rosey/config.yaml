@@ -11,6 +11,9 @@ base_url: https://wooden-fjord.cloudvent.net/
 
 rosey_paths:
   rosey_base_file_path: "./rosey/base.json"
+  rosey_base_urls_file_path: "./rosey/base.urls.json"
+  translations_dir_path: "./rosey/translations"
+  locales_dir_path: "./rosey/locales"
   
 
 # Smartling integration
