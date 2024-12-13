@@ -158,6 +158,7 @@ _editables:
 
 _inputs:
   translations:
+    type: object
     options:
       preview:
         icon: translate
