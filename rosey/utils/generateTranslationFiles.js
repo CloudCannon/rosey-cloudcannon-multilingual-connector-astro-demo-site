@@ -1,12 +1,13 @@
 import fs from "fs";
 import YAML from "yaml";
 import path from "path";
-import dotenv from "dotenv";
+import dotenv, { config } from "dotenv";
 import { NodeHtmlMarkdown } from "node-html-markdown";
 import {
   isDirectory,
   readFileWithFallback,
   readJsonFromFile,
+  readConfigFile,
 } from "./helpers/file-helper.js";
 
 const nhm = new NodeHtmlMarkdown(
@@ -16,31 +17,40 @@ const nhm = new NodeHtmlMarkdown(
 );
 dotenv.config();
 
-const inputFilePath = "./rosey/base.json";
-const inputURLFilePath = "./rosey/base.urls.json";
-const translationFilesDirPath = "./rosey/translations";
-const localesDirPath = "./rosey/locales";
+(async () => {
+  const configData = await readConfigFile("./rosey/config.yaml");
 
-const baseURL = process.env.BASEURL;
-const locales = process.env.LOCALES?.split(",");
+  const locales = configData.locales;
+  // Loop through locales
+  for (let i = 0; i < locales.length; i++) {
+    const locale = locales[i];
 
-// Loop through locales
-for (let i = 0; i < locales.length; i++) {
-  const locale = locales[i];
+    generateTranslationFilesForLocale(locale, configData).catch((err) => {
+      console.error(`❌❌ Encountered an error translating ${locale}:`, err);
+    });
+  }
+})();
 
-  generateTranslationFilesForLocale(locale).catch((err) => {
-    console.error(`❌❌ Encountered an error translating ${locale}:`, err);
-  });
-}
-
-async function generateTranslationFilesForLocale(locale) {
+async function generateTranslationFilesForLocale(locale, configData) {
   // Get the Rosey generated data
+  const baseURL = configData.base_url;
+  const inputFilePath = configData.rosey_paths.rosey_base_file_path;
+  const inputURLFilePath = configData.rosey_paths.rosey_base_urls_file_path;
+  const translationFilesDirPath = configData.rosey_paths.translations_dir_path;
+  const localesDirPath = configData.rosey_paths.locales_dir_path;
   const localePath = path.join(localesDirPath, `${locale}.json`);
+  const incomingSmartlingTranslationsDir =
+    configData.smartling.incoming_translations_dir;
+  const smartlingTranslationsDataFilePath = path.join(
+    incomingSmartlingTranslationsDir,
+    `${locale}.json`
+  );
+
   const oldLocaleData = await readJsonFromFile(localePath);
   const inputFileData = await readJsonFromFile(inputFilePath);
   const inputURLFileData = await readJsonFromFile(inputURLFilePath);
   const smartlingTranslationData = await readJsonFromFile(
-    `./rosey/smartling-translations/${locale}.json`
+    smartlingTranslationsDataFilePath
   );
 
   const pages = Object.keys(inputURLFileData.keys);
@@ -123,7 +133,7 @@ async function generateTranslationFilesForLocale(locale) {
         cleanedOutputFileData["urlTranslation"] = page;
       }
 
-      initDefaultInputs(cleanedOutputFileData, page, locale);
+      initDefaultInputs(cleanedOutputFileData, page, locale, baseURL);
 
       Object.keys(inputFileData.keys).forEach((inputKey) => {
         const inputTranslationObj = inputFileData.keys[inputKey];
@@ -138,7 +148,6 @@ async function generateTranslationFilesForLocale(locale) {
           cleanedOutputFileData[inputKey] = translationFileData[inputKey];
         }
 
-        // console.log("smartlingTranslationData: ", smartlingTranslationData);
         // If entry doesn't exist in our output file, add it
         // Check smartling translations for the translation and add it here if it exists
         if (!cleanedOutputFileData[inputKey]) {
@@ -155,7 +164,8 @@ async function generateTranslationFilesForLocale(locale) {
           inputKey,
           page,
           inputTranslationObj,
-          oldLocaleData
+          oldLocaleData,
+          baseURL
         );
 
         // Add each entry to page object group depending on whether they are translated or not
@@ -183,7 +193,7 @@ function getPageString(page) {
   return page.replace(".html", "").replace("index", "");
 }
 
-function initDefaultInputs(data, page, locale) {
+function initDefaultInputs(data, page, locale, baseURL) {
   // Create the inputs obj if there is none
   if (!data["_inputs"]) {
     data["_inputs"] = {};
@@ -225,7 +235,13 @@ function formatMarkdownForComments(markdown) {
   );
 }
 
-function getInputConfig(inputKey, page, inputTranslationObj) {
+function getInputConfig(
+  inputKey,
+  page,
+  inputTranslationObj,
+  oldLocaleData,
+  baseURL
+) {
   const untranslatedPhrase = inputTranslationObj.original.trim();
   // Turn into markdown
   const untranslatedPhraseMarkdown = nhm.translate(untranslatedPhrase);
@@ -259,7 +275,8 @@ function getInputConfig(inputKey, page, inputTranslationObj) {
 
   const locationString = generateLocationString(
     originalPhraseTidiedForComment,
-    page
+    page,
+    baseURL
   );
 
   const isLabelConcat = originalPhraseTidiedForComment.length > 42;
@@ -305,7 +322,7 @@ function getTranslationHTMLFilename(translationFilename) {
   return translationFilename.replace(".yaml", "/index.html");
 }
 
-function generateLocationString(originalPhrase, page) {
+function generateLocationString(originalPhrase, page, baseURL) {
   // Limit each phrase to 3 words
   const urlHighlighterWordLength = 3;
   const originalPhraseArray = originalPhrase.split(/[\n]+/);
