@@ -66,7 +66,14 @@ const nhm = new NodeHtmlMarkdown(
 
       const localeTranslationDataRaw =
         await readFileWithFallback(localeFilePath);
-      localesData[locale] = YAML.parse(localeTranslationDataRaw);
+
+      if (!localeTranslationDataRaw) {
+        localesData[locale] = {};
+        return;
+      } else {
+        localesData[locale] = YAML.parse(localeTranslationDataRaw);
+        return;
+      }
     })
   );
 
