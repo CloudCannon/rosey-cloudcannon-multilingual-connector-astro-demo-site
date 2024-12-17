@@ -28,7 +28,7 @@ dotenv.config();
 
 // The generateLocales function runs on each separate locale
 async function generateLocale(locale, configData) {
-  console.log(configData);
+  // console.log(configData);
   const translationsDirPath = configData.rosey_paths.translations_dir_path;
   const localesDirPath = configData.rosey_paths.locales_dir_path;
   const excludedContentFiles = configData.visual_editing.excluded_files;

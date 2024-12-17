@@ -26,6 +26,7 @@ const nhm = new NodeHtmlMarkdown(
   const configData = await readConfigFile("./rosey/config.yaml");
   // const contentDirPath = "./src/content/pages/"; // The content dir of .md pages to sync data files to
   const contentDirPath = configData.visual_editing.content_directory; // TODO: Test whether the omitted pages affects anything - The content dir of .md pages to sync data files to
+  console.log({ contentDirPath });
   // const dataFilesDirPath = "./rosey/translations";
   const dataFilesDirPath = configData.rosey_paths.translations_dir_path;
   // const baseJsonFile = "./rosey/base.json";
@@ -33,6 +34,7 @@ const nhm = new NodeHtmlMarkdown(
   // const roseyLocalesDirPath = "./rosey/locales/";
   const roseyLocalesDirPath = configData.rosey_paths.locales_dir_path;
   const locales = configData.locales;
+  const excludedContentFiles = configData.visual_editing.excluded_files;
   const baseJsonData = await readJsonFromFile(baseJsonFile);
   const baseJsonKeys = Object.keys(baseJsonData.keys);
   const translationsDirFiles = await fs.promises.readdir(dataFilesDirPath);
@@ -45,6 +47,15 @@ const nhm = new NodeHtmlMarkdown(
   });
   const contentDirectoryPageNames = await fs.promises.readdir(contentDirPath, {
     recursive: true,
+  });
+
+  const contentDirectoryPageNamesFiltered = [];
+  contentDirectoryPageNames.map((fileName) => {
+    if (excludedContentFiles.includes(fileName)) {
+      return;
+    } else {
+      contentDirectoryPageNamesFiltered.push(fileName);
+    }
   });
 
   // Get the data from the last builds locales files before we start our page loop
@@ -88,12 +99,31 @@ const nhm = new NodeHtmlMarkdown(
       );
 
       // If page is visually editable, get the page's contents
-      const pageNameMd = pageFileName
+      let pageNameMd = pageFileName
         .replace(".yaml", ".md")
         .replace("home", "index");
-      const isPageVisuallyEditable =
-        contentDirectoryPageNames.includes(pageNameMd);
-      if (!isPageVisuallyEditable) {
+      const isPageVisuallyEditable = () => {
+        if (contentDirectoryPageNamesFiltered.includes(pageNameMd)) {
+          return true;
+        }
+        if (contentDirectoryPageNamesFiltered.includes(`${pageNameMd}x`)) {
+          pageNameMd = `${pageNameMd}x`;
+          return true;
+        }
+        if (
+          !pageFileName.includes("/") &&
+          contentDirectoryPageNamesFiltered.includes(`pages/${pageNameMd}`)
+        ) {
+          pageNameMd = `pages/${pageNameMd}`;
+          return true;
+        }
+        return false;
+      };
+
+      console.log({ pageNameMd });
+      console.log(isPageVisuallyEditable());
+      console.log({ contentDirectoryPageNamesFiltered });
+      if (!isPageVisuallyEditable()) {
         return;
       }
       const contentPageFilePath = path.join(contentDirPath, pageNameMd);
@@ -111,7 +141,7 @@ const nhm = new NodeHtmlMarkdown(
         // If this page is visually editable and has content blocks
         // Find the corresponding translation and add the translated value from the data file to the content block
         // Once we've looped over it's blocks we can write the file with the new transformed frontmatter
-        if (isPageVisuallyEditable) {
+        if (isPageVisuallyEditable()) {
           const pageContentBlocks = frontmatter.content_blocks;
           if (pageContentBlocks) {
             pageContentBlocks.forEach((block) => {
@@ -120,6 +150,7 @@ const nhm = new NodeHtmlMarkdown(
               const newTranslations =
                 updateDeeplyNestedObjectsAndReturnTranslations(
                   block,
+                  locales,
                   translationOriginalInMarkdown,
                   pageTranslationData,
                   baseJsonData,
@@ -240,7 +271,7 @@ const nhm = new NodeHtmlMarkdown(
           // If this page is visually editable and has content blocks
           // Find the corresponding translation and add the translated value from the data file to the content block
           // Once we've looped over it's blocks we can write the file with the new transformed frontmatter
-          if (isPageVisuallyEditable) {
+          if (isPageVisuallyEditable()) {
             const pageContentBlocks = frontmatter.content_blocks;
             if (pageContentBlocks) {
               pageContentBlocks.forEach((block) => {
@@ -249,6 +280,7 @@ const nhm = new NodeHtmlMarkdown(
 
                 updateDeeplyNestedTranslationObjects(
                   block,
+                  locales,
                   translationOriginalInMarkdown,
                   newPageTranslationData
                 );
