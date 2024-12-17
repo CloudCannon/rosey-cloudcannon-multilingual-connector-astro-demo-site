@@ -41,7 +41,7 @@
 	},
 	"markdown:this-is-new-and-should-now-work": {
 		"original": "This is <strong>new</strong> and should <em>now</em> work.",
-		"value": "<p>Das ist <strong>neu</strong> und sollte <em>jetzt</em> funktionieren.</p>\n"
+		"value": "<p>Das ist <strong>neu</strong> und sollte <em>jetzt</em> <strong>QA'd in the visual</strong> funktionieren.</p>\n"
 	},
 	"rosey-cloudcannon-multilingual-connector": {
 		"original": " Rosey - CloudCannon Multilingual Connector ",

@@ -217,6 +217,6 @@ markdown:this-content-and-it's-translations-are-editable-from-the-visual-editor-
   bearbeitet werden, ebenso wie Datendateien, die eine einfach zu bedienende
   Oberfläche für nicht-technische Personen bieten, um eine mehrsprachige Website
   zu pflegen.
-markdown:this-is-new-and-should-now-work: Das ist **neu** und sollte _jetzt_ funktionieren.
+markdown:this-is-new-and-should-now-work: Das ist **neu** und sollte *jetzt* **QA'd in the visual** funktionieren.
 rosey-cloudcannon-multilingual-connector: " Rosey - CloudCannon Mehrsprachiger Konnektor "
 rss-feed: RSS-Feed
