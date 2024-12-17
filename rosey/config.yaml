@@ -2,6 +2,7 @@ locales:
   - es-ES
   - de-DE
   - fr-FR
+  - nl-NL
 base_url: ''
 rosey_paths:
   rosey_base_file_path: ./rosey/base.json
@@ -10,8 +11,8 @@ rosey_paths:
   locales_dir_path: ./rosey/locales
 smartling:
   smartling_enabled: false
-  dev_project_id: 
-  dev_user_identifier: 
+  dev_project_id:
+  dev_user_identifier:
   ping_interval: 20000
   ping_maximum: 6
   pings_to_wait_for_auth: 3
@@ -37,13 +38,18 @@ tagged_body_content_elements:
   - h4
   - h5
   - h6
-
 _inputs:
   locales:
     type: array
-    comment: Add and remove the locales you need for your site. Locales can be any format, usually either a two letter code (es), or a hyphenated four letter code (es-ES).
+    comment: >-
+      Add and remove the locales you need for your site. Locales can be any
+      format, usually either a two letter code (es), or a hyphenated four letter
+      code (es-ES).
   base_url:
-    comment: The url to the CloudCannon staging site that you enter your translation data to. Used to generate links to the original content to help provide context to translators.
+    comment: >-
+      The url to the CloudCannon staging site that you enter your translation
+      data to. Used to generate links to the original content to help provide
+      context to translators.
   rosey_paths:
     type: object
     options:
@@ -68,7 +74,11 @@ _inputs:
         icon: smart_toy
   smartling_enabled:
     type: switch
-    comment: Enable automatic Smartling AI powered machine translations? Requires a Smartling account with an API key set in this site's environment variables. Make sure you understand the billing around these translations before enabling this.
+    comment: >-
+      Enable automatic Smartling AI powered machine translations? Requires a
+      Smartling account with an API key set in this site's environment
+      variables. Make sure you understand the billing around these translations
+      before enabling this.
   dev_project_id:
     type: text
     hidden: '!smartling_enabled'
@@ -80,19 +90,30 @@ _inputs:
   ping_interval:
     type: number
     hidden: '!smartling_enabled'
-    comment: The time between pings to Smartlings API when checking if translations are done yet. Measured in ms.
+    comment: >-
+      The time between pings to Smartlings API when checking if translations are
+      done yet. Measured in ms.
   ping_maximum:
     type: number
     hidden: '!smartling_enabled'
-    comment: The number of pings to try Smartlings API for new translations before giving up.
+    comment: >-
+      The number of pings to try Smartlings API for new translations before
+      giving up.
   pings_to_wait_for_auth:
     type: number
     hidden: '!smartling_enabled'
-    comment: The number of pings to try Smartlings API for authorization for new translations before timing out. If there are no new translations, but the API call somehow goes through, Smartling will get stuck on AWAITING_AUTHORIZATION. If this is the case can save time to exit before trying the full set of pings.
+    comment: >-
+      The number of pings to try Smartlings API for authorization for new
+      translations before timing out. If there are no new translations, but the
+      API call somehow goes through, Smartling will get stuck on
+      AWAITING_AUTHORIZATION. If this is the case can save time to exit before
+      trying the full set of pings.
   incoming_translations_dir:
     type: text
     hidden: '!smartling_enabled'
-    comment: The location of the directory that the incoming translation files are downloaded to.
+    comment: >-
+      The location of the directory that the incoming translation files are
+      downloaded to.
   outgoing_translations_file_path:
     type: text
     hidden: '!smartling_enabled'
@@ -100,7 +121,9 @@ _inputs:
   outgoing_translation_file_uri:
     type: text
     hidden: '!smartling_enabled'
-    comment: The unique identifier that Smartling uses for this site. Can be anything as long as it's unique to this site in your Smartling project.
+    comment: >-
+      The unique identifier that Smartling uses for this site. Can be anything
+      as long as it's unique to this site in your Smartling project.
   visual_editing:
     type: object
     options:
@@ -108,23 +131,36 @@ _inputs:
         icon: edit
   visual_editor_syncing_enabled:
     type: switch
-    comment: Sync translations in the frontmatter of content pages to the data file and vice versa? This is required to use translations in the visual editor in CloudCannon.
+    comment: >-
+      Sync translations in the frontmatter of content pages to the data file and
+      vice versa? This is required to use translations in the visual editor in
+      CloudCannon.
   display_orphaned_translations:
     type: switch
     hidden: '!visual_editor_syncing_enabled'
-    comment: If true, display all unaccounted for translations in the pages translation data file, in the translations object. Important if you have opted to not show the translation data files, and are exclusively translating in the visual editor.
+    comment: >-
+      If true, display all unaccounted for translations in the pages translation
+      data file, in the translations object. Important if you have opted to not
+      show the translation data files, and are exclusively translating in the
+      visual editor.
   content_directory:
     type: text
     hidden: '!visual_editor_syncing_enabled'
-    comment: The path to the directory of content files that the translations belong to.
+    comment: >-
+      The path to the directory of content files that the translations belong
+      to.
   excluded_files:
     type: array
     hidden: '!visual_editor_syncing_enabled'
-    comment: Excluded files in the content directory that are not part of the translations workflow.
+    comment: >-
+      Excluded files in the content directory that are not part of the
+      translations workflow.
   translations_object_name:
     type: text
     hidden: '!visual_editor_syncing_enabled'
-    comment: The keyname that we store page translation config and orphaned translations (if enabled) in on each content page.
+    comment: >-
+      The keyname that we store page translation config and orphaned
+      translations (if enabled) in on each content page.
   migrator_settings:
     type: text
     hidden: '!visual_editor_syncing_enabled'
@@ -134,11 +170,21 @@ _inputs:
   migrator_enabled:
     type: switch
     hidden: '!visual_editor_syncing_enabled'
-    comment: Enable a search through your content files to update frontmatter that has not been updated to suit translating in the visual editor. Changes a translation string to the translation object required to render the translations to the page. Should be used with care to reduce the risk of migrating pieces of frontmatter that weren't intended to be migrated.
+    comment: >-
+      Enable a search through your content files to update frontmatter that has
+      not been updated to suit translating in the visual editor. Changes a
+      translation string to the translation object required to render the
+      translations to the page. Should be used with care to reduce the risk of
+      migrating pieces of frontmatter that weren't intended to be migrated.
   components_directory:
     type: text
     hidden: '!visual_editor_syncing_enabled'
-    comment: The directory of Bookshop components used to build our content pages. These must be Bookshop components to use live editing in CloudCannon, and therefore live editing of your translations.
+    comment: >-
+      The directory of Bookshop components used to build our content pages.
+      These must be Bookshop components to use live editing in CloudCannon, and
+      therefore live editing of your translations.
   tagged_body_content_elements:
     type: array
-    comment: The block level elements to add data-rosey tags to when parsing body content on this site.
+    comment: >-
+      The block level elements to add data-rosey tags to when parsing body
+      content on this site.
