@@ -12,6 +12,9 @@ smartling:
   smartling_enabled: true
   dev_project_id: 403ba8439
   dev_user_identifier: widgoyosxtbfsfonzlcfejabgndxst
+  ping_interval: 20000
+  ping_maximum: 6
+  pings_to_wait_for_auth: 3
   incoming_translations_dir: ./rosey/smartling-translations/
   outgoing_translations_file_path: ./rosey/outgoing-smartling-translations.json
   outgoing_translation_file_uri: /rosey/translations/
@@ -72,6 +75,15 @@ _inputs:
   dev_user_identifier:
     type: text
     comment: Enter your Smartling user id here
+  ping_interval:
+    type: number
+    comment: The time between pings to Smartlings API when checking if translations are done yet. Measured in ms.
+  ping_maximum:
+    type: number
+    comment: The number of pings to try Smartlings API for new translations before giving up.
+  pings_to_wait_for_auth:
+    type: number
+    comment: The number of pings to try Smartlings API for authorization for new translations before timing out. If there are no new translations, but the API call somehow goes through, Smartling will get stuck on AWAITING_AUTHORIZATION. If this is the case can save time to exit before trying the full set of pings.
   incoming_translations_dir:
     type: text
     comment: The location of the directory that the incoming translation files are downloaded to.

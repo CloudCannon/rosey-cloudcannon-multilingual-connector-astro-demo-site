@@ -43,10 +43,8 @@ content_blocks:
           non-technical people to maintain a multilingual site.
 
 
-          I love to talk. On these rides. Mind on the road; your dilated eyes.
-          Kept my mouth closed. We felt so familiar. White *ferrari*, **good**
-          times.
-        es_ES_translation: >+
+          Smartling has either had a change or is busy?
+        es_ES_translation: >-
           Un sitio de demostración para el conector multilingüe
           Rosey-CloudCannon para Astro.
 
@@ -56,7 +54,9 @@ content_blocks:
           fácil de usar para que las personas sin conocimientos técnicos
           mantengan un sitio multilingüe.
 
-        de_DE_translation: >+
+
+          ¿Smartling ha tenido un cambio o está ocupado?
+        de_DE_translation: >-
           Eine Demo-Site für den Rosey-CloudCannon Multilingual Connector für
           Astro.
 
@@ -66,7 +66,9 @@ content_blocks:
           bedienende Oberfläche für nicht-technische Personen bieten, um eine
           mehrsprachige Website zu pflegen.
 
-        fr_FR_translation: >+
+
+          Smartling hat sich entweder verändert oder ist beschäftigt?
+        fr_FR_translation: >-
           Un site de démonstration pour le connecteur multilingue
           Rosey-CloudCannon pour Astro.
 
@@ -76,6 +78,8 @@ content_blocks:
           interface facile à utiliser pour les personnes non spécialisées dans
           la gestion d'un site multilingue.
 
+
+          Smartling a changé ou est occupé ?
       color: "#393939"
     image:
       image_path: /src/assets/images/featured-image-5.jpg

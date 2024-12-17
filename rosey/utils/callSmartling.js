@@ -44,6 +44,9 @@ dotenv.config();
     configData.smartling.outgoing_translations_file_path;
   const outgoingTranslationFileUri =
     configData.smartling.outgoing_translation_file_uri;
+  const pingInterval = configData.smartling.ping_interval;
+  const pingMaximum = configData.smartling.ping_maximum;
+  const pingsToWaitForAuth = configData.smartling.pings_to_wait_for_auth;
 
   // Loop through all pages frontmatter so we can get the translations obj
   // Check if the page has any translate_locale set to true and if it does add it to pagesToTranslate
@@ -215,8 +218,7 @@ dotenv.config();
   // Call Job Status API until translation is completed, or we timeout.
 
   const jobInfoUrlString = `https://api.smartling.com/jobs-api/v3/projects/${projectId}/jobs/${job.translationJobUid}`;
-  const pingInterval = 20000;
-  const pingMaximum = 5;
+
   let pingCount = 0;
 
   const checkJobStatus = setInterval(async () => {
@@ -306,7 +308,7 @@ dotenv.config();
         console.log(
           `⏰ Still ${jobStatus} for translation job, waiting for completion...`
         );
-        if (pingCount >= 2) {
+        if (pingCount >= pingsToWaitForAuth) {
           console.log(
             `⏭️ Skipping after ${pingCount} API calls. If still 'Awaiting Authorization' by now, there is probably nothing to translate in this job, and we should have already exited this function.`
           );
@@ -419,7 +421,6 @@ async function generateOutgoingTranslationFile(
     const keyData = inputFileKeyData[key];
     const keyPageData = keyData.pages;
     const keyPages = Object.keys(keyPageData);
-    // console.log("key's Pages: ", keyPages);
     let translationsPageAllowed = false;
     keyPages.map((page) => {
       if (pagesToTranslateHtmlEquivalent.includes(page)) {
