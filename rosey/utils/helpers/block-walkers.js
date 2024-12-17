@@ -3,10 +3,10 @@ import dotenv from "dotenv";
 import { formatAndSlugifyMarkdownText } from "./markdown-formatters.js";
 dotenv.config();
 const md = markdownIt();
-const locales = process.env.LOCALES?.split(",");
 
 function updateDeeplyNestedObjectsAndReturnTranslations(
   structure,
+  locales,
   valueToLookFor,
   pageTranslationData,
   baseJsonData,
@@ -32,7 +32,7 @@ function updateDeeplyNestedObjectsAndReturnTranslations(
       const key = objectKeys[i];
 
       // Check we're in a translation frontmatter object
-      if (inTheIncorrectObj(objectKeys)) {
+      if (inTheIncorrectObj(objectKeys, locales)) {
         break;
       }
 
@@ -275,6 +275,7 @@ function updateDeeplyNestedObjectsAndReturnTranslations(
         let currentPath = path !== "" ? `${path}.${key}` : key;
         const result = updateDeeplyNestedObjectsAndReturnTranslations(
           structure[objectKeys[j]],
+          locales,
           valueToLookFor,
           pageTranslationData,
           baseJsonData,
@@ -294,6 +295,7 @@ function updateDeeplyNestedObjectsAndReturnTranslations(
       let currentPath = `${path}[${j}]`;
       const result = updateDeeplyNestedObjectsAndReturnTranslations(
         structure[j],
+        locales,
         valueToLookFor,
         pageTranslationData,
         baseJsonData,
@@ -309,6 +311,7 @@ function updateDeeplyNestedObjectsAndReturnTranslations(
 
 function updateDeeplyNestedTranslationObjects(
   structure,
+  locales,
   valueToLookFor,
   newPageTranslationData,
   path = ""
@@ -332,7 +335,7 @@ function updateDeeplyNestedTranslationObjects(
       const key = objectKeys[i];
 
       // Check we're in a translation frontmatter object
-      if (inTheIncorrectObj(objectKeys)) {
+      if (inTheIncorrectObj(objectKeys, locales)) {
         break;
       }
 
@@ -444,6 +447,7 @@ function updateDeeplyNestedTranslationObjects(
         let currentPath = path !== "" ? `${path}.${key}` : key;
         const result = updateDeeplyNestedTranslationObjects(
           structure[objectKeys[j]],
+          locales,
           valueToLookFor,
           newPageTranslationData,
           currentPath
@@ -461,6 +465,7 @@ function updateDeeplyNestedTranslationObjects(
       let currentPath = `${path}[${j}]`;
       const result = updateDeeplyNestedTranslationObjects(
         structure[j],
+        locales,
         valueToLookFor,
         newPageTranslationData,
         currentPath
@@ -559,7 +564,7 @@ function getKeyByValue(object, value) {
   });
 }
 
-function inTheIncorrectObj(objectKeys) {
+function inTheIncorrectObj(objectKeys, locales) {
   let isIncorrectObj = false;
   locales.forEach((locale) => {
     if (!objectKeys.includes(`${locale.replace("-", "_")}_translation`)) {

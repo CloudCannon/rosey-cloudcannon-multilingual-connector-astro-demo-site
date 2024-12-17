@@ -1,5 +1,4 @@
 paths:
-  data: data
   static: "public"
   uploads: public/images
 
@@ -61,10 +60,12 @@ collections_config:
           empty_type: string
   data:
     path: data
+    disable_url: true
     disable_add: true
     disable_add_folder: true
     _inputs:
       colors[*]:
+        type: array
         options:
           preview:
             icon: palette
@@ -79,12 +80,14 @@ collections_config:
       locales:
         type: array
       locales[*]:
+        type: array
         options:
           preview:
             icon: translate
   translations:
     path: rosey/translations
     icon: translate
+    disable_url: true
     disable_add: false
     add_options:
       - name: Add Language
@@ -94,6 +97,14 @@ collections_config:
       urlTranslation:
         type: text
         comment: Provide a translation for the URL that Rosey will build this page at.
+    disable_add_folder: true
+    disable_file_actions: true
+  translations_config:
+    path: rosey
+    icon: settings
+    glob:
+      - config.yaml
+    disable_add: false
     disable_add_folder: true
     disable_file_actions: true
 
@@ -106,6 +117,7 @@ collection_groups:
     collections:
       - data
       - translations
+      - translations_config
 
 file_config:
   - glob: data/colors.json
@@ -158,6 +170,7 @@ _editables:
 
 _inputs:
   translations:
+    type: object
     options:
       preview:
         icon: translate

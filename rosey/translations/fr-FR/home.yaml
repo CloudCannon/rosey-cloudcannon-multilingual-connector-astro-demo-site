@@ -2,15 +2,15 @@ urlTranslation: index.html
 _inputs:
   $:
     type: object
-    comment: "[See ](https://normal-meek.cloudvent.net/)"
+    comment: "[See ]()"
     options:
       place_groups_below: false
       groups:
         - heading: Still to translate (fr-FR)
-          comment: Text to translate on [](https://normal-meek.cloudvent.net/)
+          comment: Text to translate on []()
           inputs: []
         - heading: Already translated (fr-FR)
-          comment: Text already translated on [](https://normal-meek.cloudvent.net/)
+          comment: Text already translated on []()
           inputs:
             - blog
             - cloudcannon
@@ -21,6 +21,7 @@ _inputs:
             - markdown:that-is-when-you-can-experience-true-joy-when-you-have-no-fear-maybe-just-to-play-a-little-we'll-put-a-little-tree-here
             - markdown:they-say-everything-looks-better-with-odd-numbers-of-things-but-sometimes-i-put-even-numbers—just-to-upset-the-critics
             - markdown:this-content-and-it's-translations-are-editable-from-the-visual-editor-as-well-as-data-files-providing-an-easy-to-use-interface-for-non-technical-people-to-maintain-a-multilingual-site
+            - markdown:this-is-new-and-should-now-work
             - rosey-cloudcannon-multilingual-connector
             - rss-feed
   blog:
@@ -28,27 +29,25 @@ _inputs:
     hidden: false
     type: text
     options: {}
-    comment: "[See on page](https://normal-meek.cloudvent.net/#:~:text=Blog)"
+    comment: "[See on page](#:~:text=Blog)"
   cloudcannon:
     label: CloudCannon
     hidden: false
     type: text
     options: {}
-    comment: "[See on page](https://normal-meek.cloudvent.net/#:~:text=CloudCannon)"
+    comment: "[See on page](#:~:text=CloudCannon)"
   github:
     label: GitHub
     hidden: false
     type: text
     options: {}
-    comment: "[See on page](https://normal-meek.cloudvent.net/#:~:text=GitHub)"
+    comment: "[See on page](#:~:text=GitHub)"
   keep-what-you-need-delete-the-rest:
     label: Keep what you need. Delete the rest.
     hidden: false
     type: textarea
     options: {}
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=Keep%20what%20you,Delete\
-      %20the%20rest)"
+    comment: "[See on page](#:~:text=Keep%20what%20you,Delete%20the%20rest)"
   markdown:a-demo-site-for-the-rosey-cloudcannon-multilingual-connector-for-astro:
     label: A demo site for the Rosey-CloudCannon Mult...
     hidden: false
@@ -62,17 +61,8 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=A%20demo%20site,Connecto\
-      r%20for%20Astro)"
+    comment: "[See on page](#:~:text=A%20demo%20site,Connector%20for%20Astro)"
     context:
       open: false
       title: Untranslated Text
@@ -91,17 +81,8 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=It's%20cold,a%20nice%20c\
-      olor)"
+    comment: "[See on page](#:~:text=It's%20cold,a%20nice%20color)"
     context:
       open: false
       title: Untranslated Text
@@ -121,17 +102,8 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=That%20is%20when,little%\
-      20tree%20here)"
+    comment: "[See on page](#:~:text=That%20is%20when,little%20tree%20here)"
     context:
       open: false
       title: Untranslated Text
@@ -151,17 +123,8 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=They%20say%20_everything\
-      _,upset%20the%20critics)"
+    comment: "[See on page](#:~:text=They%20say%20_everything_,upset%20the%20critics)"
     context:
       open: false
       title: Untranslated Text
@@ -181,17 +144,8 @@ _inputs:
       redo: true
       removeformat: true
       copyformatting: true
-      bulletedlist: true
-      numberedlist: true
       blockquote: true
-      superscript: true
-      subscript: true
-      code: true
-      horizontalrule: true
-      image: true
-    comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=This%20content%20and,a%2\
-      0multilingual%20site)"
+    comment: "[See on page](#:~:text=This%20content%20and,a%20multilingual%20site)"
     context:
       open: false
       title: Untranslated Text
@@ -199,27 +153,41 @@ _inputs:
       content: This content and it's translations are editable from the visual editor,
         as well as data files, providing an easy to use interface for
         non-technical people to maintain a multilingual site.
+  markdown:this-is-new-and-should-now-work:
+    label: This is new and should _now_ work.
+    hidden: false
+    type: markdown
+    options:
+      bold: true
+      format: p h1 h2 h3 h4
+      italic: true
+      link: true
+      undo: true
+      redo: true
+      removeformat: true
+      copyformatting: true
+      blockquote: true
+    comment: "[See on page](#:~:text=This%20is%20new,should%20_now_%20work)"
   rosey-cloudcannon-multilingual-connector:
     label: Rosey - CloudCannon Multilingual Connector
     hidden: false
     type: textarea
     options: {}
     comment: "[See on
-      page](https://normal-meek.cloudvent.net/#:~:text=Rosey%20-%20CloudCannon%\
-      20Multilingual%20Connector)"
+      page](#:~:text=Rosey%20-%20CloudCannon%20Multilingual%20Connector)"
   rss-feed:
     label: RSS Feed
     hidden: false
     type: text
     options: {}
-    comment: "[See on page](https://normal-meek.cloudvent.net/#:~:text=RSS%20Feed)"
+    comment: "[See on page](#:~:text=RSS%20Feed)"
 blog: Blog
 cloudcannon: CloudCannon
 github: GitHub
 keep-what-you-need-delete-the-rest: Gardez ce dont vous avez besoin Supprimez le reste
 markdown:a-demo-site-for-the-rosey-cloudcannon-multilingual-connector-for-astro:
   Un site de démonstration pour le connecteur multilingue Rosey-CloudCannon pour
-  Astro. **Test** a **QA** in the *visual editor*.
+  Astro.
 markdown:it's-cold-but-it's-beautiful-get-tough-with-it-get-strong-brown-is-such-a-nice-color:
   Il fait froid, mais c'est beau. Il faut s'endurcir, devenir fort. Le marron
   est une couleur très agréable.
@@ -234,5 +202,6 @@ markdown:this-content-and-it's-translations-are-editable-from-the-visual-editor-
   de même que les fichiers de données, ce qui constitue une interface facile à
   utiliser pour les personnes non spécialisées dans la gestion d'un site
   multilingue.
+markdown:this-is-new-and-should-now-work: Il s'agit d'une **nouveauté** qui devrait *désormais* fonctionner.
 rosey-cloudcannon-multilingual-connector: " Rosey - Connecteur multilingue CloudCannon "
 rss-feed: Flux RSS

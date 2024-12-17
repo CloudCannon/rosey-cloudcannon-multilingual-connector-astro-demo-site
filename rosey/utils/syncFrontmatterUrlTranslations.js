@@ -7,17 +7,24 @@ import {
   readFileWithFallback,
   readJsonFromFile,
   readContentPage,
+  readConfigFile,
 } from "./helpers/file-helper.js";
 
 dotenv.config();
 
-const localesDir = "./rosey/locales";
-const translationsDir = "./rosey/translations";
-const contentDirPath = "./src/content/"; // The content dir of .md pages to sync data files to
-const excludedContentPages = ["config.ts"];
-const locales = process.env.LOCALES?.split(",");
-
 (async () => {
+  const configData = await readConfigFile("./rosey/config.yaml");
+
+  // const localesDir = "./rosey/locales";
+  const localesDir = configData.rosey_paths.locales_dir_path;
+  // const translationsDir = "./rosey/translations";
+  const translationsDir = configData.rosey_paths.translations_dir_path;
+  // const contentDirPath = "./src/content/"; // The content dir of .md pages to sync data files to
+  const contentDirPath = configData.visual_editing.content_directory;
+  // const excludedContentPages = ["config.ts"];
+  const excludedContentPages = configData.visual_editing.excluded_files;
+  // const locales = process.env.LOCALES?.split(",");
+  const locales = configData.locales;
   // Get all pages frontmatter
   const pagesFilePathsWithDirs = await fs.promises.readdir(contentDirPath, {
     recursive: true,

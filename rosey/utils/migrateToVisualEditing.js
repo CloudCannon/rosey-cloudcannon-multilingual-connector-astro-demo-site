@@ -5,16 +5,23 @@ import { visit } from "unist-util-visit";
 import { fromHtmlIsomorphic } from "hast-util-from-html-isomorphic";
 import dotenv from "dotenv";
 
-import { isDirectory, readFileWithFallback } from "./helpers/file-helper.js";
+import {
+  isDirectory,
+  readFileWithFallback,
+  readConfigFile,
+} from "./helpers/file-helper.js";
 import { findInstancesOfComponent } from "./helpers/block-walkers.js";
 
 dotenv.config();
-const locales = process.env.LOCALES?.split(",");
-const contentDirPath = "./src/content/";
-const componentDirectoryPath = "./src/components/";
 
 // Main function
 (async () => {
+  const configData = await readConfigFile("./rosey/config.yaml");
+  const locales = configData.locales;
+  const contentDirPath = configData.visual_editing.content_directory;
+  const componentDirectoryPath =
+    configData.visual_editing.migrator_settings.components_directory;
+
   const componentFiles = await fs.promises.readdir(componentDirectoryPath, {
     recursive: true,
   });
@@ -85,6 +92,7 @@ const componentDirectoryPath = "./src/components/";
 
     const componentNamesToUpdate = componentPathsToUpdateKeys.map(
       (componentFileName) => {
+        // TODO: FIX THIS PATH TO USE CONFIG FILE
         const fileWithoutComponentDir =
           componentFileName.split("src/components")[1];
         return fileWithoutComponentDir.substring(

@@ -18,165 +18,42 @@ import {
   readJsonFromFile,
   isDirectory,
   readFileWithFallback,
+  readConfigFile,
 } from "./helpers/file-helper.js";
 dotenv.config();
-
-// Get variables
-const projectId = process.env.DEV_PROJECT_ID;
-const userId = process.env.DEV_USER_IDENTIFIER;
-const userSecret = process.env.DEV_USER_SECRET;
-const locales = process.env.LOCALES?.split(",");
-const smartlingTranslateEnabled = process.env.SMARTLING_TRANSLATE_ENABLED;
-const authRequestData = {
-  userIdentifier: userId,
-  userSecret: userSecret,
-};
-
-// Get a token
-async function getSmartlingAuth(url, data) {
-  try {
-    const response = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-
-    if (response.ok) {
-      const result = await response.json();
-      return result;
-    } else {
-      console.error("Error:", response.status, response.statusText);
-    }
-  } catch (error) {
-    console.error("Error:", error.message);
-  }
-}
-
-// Get job progress
-async function fetchSmartlingData(url, authToken) {
-  try {
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${authToken}`,
-      },
-    });
-
-    if (response.ok) {
-      const result = await response.json();
-      return result;
-    } else {
-      console.error("Error:", response.status, response.statusText);
-    }
-  } catch (error) {
-    console.error("Error:", error.message);
-  }
-}
-
-async function generateOutgoingTranslationFile(
-  baseFilePath,
-  outgoingFilePath,
-  pagesToTranslate
-) {
-  const inputFileData = await readJsonFromFile(baseFilePath);
-  const existingSmartlingTranslationsFiles = await fs.promises.readdir(
-    "./rosey/smartling-translations"
-  );
-  const firstExistingSmartlingTranslationsFilePath = path.join(
-    "rosey",
-    "smartling-translations",
-    existingSmartlingTranslationsFiles[0]
-  );
-  const existingSmartlingTranslations = await readJsonFromFile(
-    firstExistingSmartlingTranslationsFilePath
-  );
-  const existingSmartlingTranslationKeys = Object.keys(
-    existingSmartlingTranslations
-  );
-  // Get all the keys in the base.json
-  const inputFileKeyData = inputFileData.keys;
-  const inputKeys = Object.keys(inputFileKeyData);
-  // TODO:
-  // Loop through all pages frontmatter so we can get the translations obj
-  // Check if the page has any translate_locale set to true and if it does add it to pagesToTranslate
-  // When we're looping through the keys check their pages
-  // If any of their pages are included in pagesToTranslate, add the key to translationObject like normal
-  // If none of their pages are included in pagesToTranslate, don't add the key to translationObject
-  // Add a check in the main function where if this object is empty, don't proceed with the smartling call
-  // // Otherwise we risk the situation where there is a new translation, but since it's page is excluded
-  // // we can't write it to the translationObject and would risk sending away nothing to smartling and having to wait
-
-  const translationObject = {};
-  const pagesToTranslateHtmlEquivalent = pagesToTranslate.map((page) => {
-    return page
-      .replace("pages/", "")
-      .replace("index.md", "index.html")
-      .replace(".mdx", "/index.html")
-      .replace(".md", "/index.html");
-  });
-
-  // console.log(
-  //   "pagesToTranslateHtmlEquivalent: ",
-  //   pagesToTranslateHtmlEquivalent
-  // );
-  // Looping through base.json keys
-  inputKeys.forEach((key) => {
-    // If any of their pages are included in pagesToTranslate, add the key to translationObject like normal
-    // If none of their pages are included in pagesToTranslate, don't add the key to translationObject
-    const keyData = inputFileKeyData[key];
-    const keyPageData = keyData.pages;
-    const keyPages = Object.keys(keyPageData);
-    // console.log("key's Pages: ", keyPages);
-    let translationsPageAllowed = false;
-    keyPages.map((page) => {
-      if (pagesToTranslateHtmlEquivalent.includes(page)) {
-        translationsPageAllowed = true;
-      }
-    });
-
-    // If we don't already have the translation, add it to the outgoing translations obj
-    if (
-      !existingSmartlingTranslationKeys.includes(key) &&
-      translationsPageAllowed
-    ) {
-      const originalPhrase = inputFileData.keys[key].original;
-      translationObject[key] = originalPhrase;
-    }
-  });
-
-  await fs.promises.writeFile(
-    outgoingFilePath,
-    JSON.stringify(translationObject)
-  );
-  console.log("✅✅ Outgoing translations updated succesfully");
-}
-
-// Create factory for building API clients.
-const apiBuilder = new SmartlingApiClientBuilder()
-  .setBaseSmartlingApiUrl("https://api.smartling.com")
-  .authWithUserIdAndUserSecret(userId, userSecret);
-
-// Instantiate the APIs we'll need.
-const jobsApi = apiBuilder.build(SmartlingJobsApi);
-const batchesApi = apiBuilder.build(SmartlingJobBatchesApi);
-const filesApi = apiBuilder.build(SmartlingFilesApi);
 
 (async () => {
   // We use one object for all translations, and group them under the name /rosey/translations/
   // A URI is used by smartling as a unique identifier for the set of files being translated
-  const outgoingTranslationFileUri = "/rosey/translations/";
   // A path needs to be more explicit and say the path begins from the directory being executed in (the root)
-  const roseyBaseFilePath = "./rosey/base.json";
+  const configData = await readConfigFile("./rosey/config.yaml");
+
+  // Get variables
+  const userSecret = process.env.DEV_USER_SECRET;
+  const projectId = configData.smartling.dev_project_id;
+  const userId = configData.smartling.dev_user_identifier;
+  const smartlingTranslateEnabled = configData.smartling.smartling_enabled;
+  const authRequestData = {
+    userIdentifier: userId,
+    userSecret: userSecret,
+  };
+  const roseyBaseFilePath = configData.rosey_paths.rosey_base_file_path;
+  const incomingTranslationsDir =
+    configData.smartling.incoming_translations_dir;
   const outgoingTranslationsFilePath =
-    "./rosey/outgoing-smartling-translations.json";
-  const incomingTranslationsDir = "./rosey/smartling-translations/";
+    configData.smartling.outgoing_translations_file_path;
+  const outgoingTranslationFileUri =
+    configData.smartling.outgoing_translation_file_uri;
+  const pingInterval = configData.smartling.ping_interval;
+  const pingMaximum = configData.smartling.ping_maximum;
+  const pingsToWaitForAuth = configData.smartling.pings_to_wait_for_auth;
 
   // Loop through all pages frontmatter so we can get the translations obj
   // Check if the page has any translate_locale set to true and if it does add it to pagesToTranslate
-  const excludedContentFiles = ["config.ts"];
-  const contentDirectory = "./src/content";
+  const excludedContentFiles = configData.visual_editing.excluded_files;
+  const contentDirectory = configData.visual_editing.content_directory;
+  const locales = configData.locales;
+
   const contentDirectoryFilesUnfiltered = await fs.promises.readdir(
     contentDirectory,
     {
@@ -213,6 +90,16 @@ const filesApi = apiBuilder.build(SmartlingFilesApi);
       }
     })
   );
+
+  // Create factory for building API clients.
+  const apiBuilder = new SmartlingApiClientBuilder()
+    .setBaseSmartlingApiUrl("https://api.smartling.com")
+    .authWithUserIdAndUserSecret(userId, userSecret);
+
+  // Instantiate the APIs we'll need.
+  const jobsApi = apiBuilder.build(SmartlingJobsApi);
+  const batchesApi = apiBuilder.build(SmartlingJobBatchesApi);
+  const filesApi = apiBuilder.build(SmartlingFilesApi);
 
   // Create outgoing translations file
   await generateOutgoingTranslationFile(
@@ -331,8 +218,7 @@ const filesApi = apiBuilder.build(SmartlingFilesApi);
   // Call Job Status API until translation is completed, or we timeout.
 
   const jobInfoUrlString = `https://api.smartling.com/jobs-api/v3/projects/${projectId}/jobs/${job.translationJobUid}`;
-  const pingInterval = 20000;
-  const pingMaximum = 5;
+
   let pingCount = 0;
 
   const checkJobStatus = setInterval(async () => {
@@ -422,7 +308,7 @@ const filesApi = apiBuilder.build(SmartlingFilesApi);
         console.log(
           `⏰ Still ${jobStatus} for translation job, waiting for completion...`
         );
-        if (pingCount >= 2) {
+        if (pingCount >= pingsToWaitForAuth) {
           console.log(
             `⏭️ Skipping after ${pingCount} API calls. If still 'Awaiting Authorization' by now, there is probably nothing to translate in this job, and we should have already exited this function.`
           );
@@ -443,3 +329,118 @@ const filesApi = apiBuilder.build(SmartlingFilesApi);
     }
   }, pingInterval);
 })();
+
+// Get a token
+async function getSmartlingAuth(url, data) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      return result;
+    } else {
+      console.error("Error:", response.status, response.statusText);
+    }
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+}
+
+// Get job progress
+async function fetchSmartlingData(url, authToken) {
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      return result;
+    } else {
+      console.error("Error:", response.status, response.statusText);
+    }
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+}
+
+async function generateOutgoingTranslationFile(
+  baseFilePath,
+  outgoingFilePath,
+  pagesToTranslate
+) {
+  const inputFileData = await readJsonFromFile(baseFilePath);
+  const existingSmartlingTranslationsFiles = await fs.promises.readdir(
+    "./rosey/smartling-translations"
+  );
+  const firstExistingSmartlingTranslationsFilePath = path.join(
+    "rosey",
+    "smartling-translations",
+    existingSmartlingTranslationsFiles[0]
+  );
+  const existingSmartlingTranslations = await readJsonFromFile(
+    firstExistingSmartlingTranslationsFilePath
+  );
+  const existingSmartlingTranslationKeys = Object.keys(
+    existingSmartlingTranslations
+  );
+  // Get all the keys in the base.json
+  const inputFileKeyData = inputFileData.keys;
+  const inputKeys = Object.keys(inputFileKeyData);
+  // Loop through all pages frontmatter so we can get the translations obj
+  // Check if the page has any translate_locale set to true and if it does add it to pagesToTranslate
+  // When we're looping through the keys check their pages
+  // If any of their pages are included in pagesToTranslate, add the key to translationObject like normal
+  // If none of their pages are included in pagesToTranslate, don't add the key to translationObject
+  // Add a check in the main function where if this object is empty, don't proceed with the smartling call
+  // // Otherwise we risk the situation where there is a new translation, but since it's page is excluded
+  // // we can't write it to the translationObject and would risk sending away nothing to smartling and having to wait
+
+  const translationObject = {};
+  const pagesToTranslateHtmlEquivalent = pagesToTranslate.map((page) => {
+    return page
+      .replace("pages/", "")
+      .replace("index.md", "index.html")
+      .replace(".mdx", "/index.html")
+      .replace(".md", "/index.html");
+  });
+
+  // Looping through base.json keys
+  inputKeys.forEach((key) => {
+    // If any of their pages are included in pagesToTranslate, add the key to translationObject like normal
+    // If none of their pages are included in pagesToTranslate, don't add the key to translationObject
+    const keyData = inputFileKeyData[key];
+    const keyPageData = keyData.pages;
+    const keyPages = Object.keys(keyPageData);
+    let translationsPageAllowed = false;
+    keyPages.map((page) => {
+      if (pagesToTranslateHtmlEquivalent.includes(page)) {
+        translationsPageAllowed = true;
+      }
+    });
+
+    // If we don't already have the translation, add it to the outgoing translations obj
+    if (
+      !existingSmartlingTranslationKeys.includes(key) &&
+      translationsPageAllowed
+    ) {
+      const originalPhrase = inputFileData.keys[key].original;
+      translationObject[key] = originalPhrase;
+    }
+  });
+
+  await fs.promises.writeFile(
+    outgoingFilePath,
+    JSON.stringify(translationObject)
+  );
+  console.log("✅✅ Outgoing translations updated succesfully");
+}

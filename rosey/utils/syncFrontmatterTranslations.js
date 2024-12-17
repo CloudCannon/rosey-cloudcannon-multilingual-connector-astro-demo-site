@@ -8,6 +8,7 @@ import {
   readFileWithFallback,
   readJsonFromFile,
   readContentPage,
+  readConfigFile,
 } from "./helpers/file-helper.js";
 import {
   updateDeeplyNestedObjectsAndReturnTranslations,
@@ -21,13 +22,19 @@ const nhm = new NodeHtmlMarkdown(
   /* customCodeBlockTranslators (optional) */ undefined
 );
 
-const contentDirPath = "./src/content/pages/"; // The content dir of .md pages to sync data files to
-const dataFilesDirPath = "./rosey/translations";
-const baseJsonFile = "./rosey/base.json";
-const roseyLocalesDirPath = "./rosey/locales/";
-const locales = process.env.LOCALES?.split(",");
-
 (async () => {
+  const configData = await readConfigFile("./rosey/config.yaml");
+  // const contentDirPath = "./src/content/pages/"; // The content dir of .md pages to sync data files to
+  const contentDirPath = configData.visual_editing.content_directory; // TODO: Test whether the omitted pages affects anything - The content dir of .md pages to sync data files to
+  console.log({ contentDirPath });
+  // const dataFilesDirPath = "./rosey/translations";
+  const dataFilesDirPath = configData.rosey_paths.translations_dir_path;
+  // const baseJsonFile = "./rosey/base.json";
+  const baseJsonFile = configData.rosey_paths.rosey_base_file_path;
+  // const roseyLocalesDirPath = "./rosey/locales/";
+  const roseyLocalesDirPath = configData.rosey_paths.locales_dir_path;
+  const locales = configData.locales;
+  const excludedContentFiles = configData.visual_editing.excluded_files;
   const baseJsonData = await readJsonFromFile(baseJsonFile);
   const baseJsonKeys = Object.keys(baseJsonData.keys);
   const translationsDirFiles = await fs.promises.readdir(dataFilesDirPath);
@@ -42,6 +49,15 @@ const locales = process.env.LOCALES?.split(",");
     recursive: true,
   });
 
+  const contentDirectoryPageNamesFiltered = [];
+  contentDirectoryPageNames.map((fileName) => {
+    if (excludedContentFiles.includes(fileName)) {
+      return;
+    } else {
+      contentDirectoryPageNamesFiltered.push(fileName);
+    }
+  });
+
   // Get the data from the last builds locales files before we start our page loop
   let localesData = {};
   await Promise.all(
@@ -50,7 +66,14 @@ const locales = process.env.LOCALES?.split(",");
 
       const localeTranslationDataRaw =
         await readFileWithFallback(localeFilePath);
-      localesData[locale] = YAML.parse(localeTranslationDataRaw);
+
+      if (!localeTranslationDataRaw) {
+        localesData[locale] = {};
+        return;
+      } else {
+        localesData[locale] = YAML.parse(localeTranslationDataRaw);
+        return;
+      }
     })
   );
 
@@ -83,12 +106,31 @@ const locales = process.env.LOCALES?.split(",");
       );
 
       // If page is visually editable, get the page's contents
-      const pageNameMd = pageFileName
+      let pageNameMd = pageFileName
         .replace(".yaml", ".md")
         .replace("home", "index");
-      const isPageVisuallyEditable =
-        contentDirectoryPageNames.includes(pageNameMd);
-      if (!isPageVisuallyEditable) {
+      const isPageVisuallyEditable = () => {
+        if (contentDirectoryPageNamesFiltered.includes(pageNameMd)) {
+          return true;
+        }
+        if (contentDirectoryPageNamesFiltered.includes(`${pageNameMd}x`)) {
+          pageNameMd = `${pageNameMd}x`;
+          return true;
+        }
+        if (
+          !pageFileName.includes("/") &&
+          contentDirectoryPageNamesFiltered.includes(`pages/${pageNameMd}`)
+        ) {
+          pageNameMd = `pages/${pageNameMd}`;
+          return true;
+        }
+        return false;
+      };
+
+      console.log({ pageNameMd });
+      console.log(isPageVisuallyEditable());
+      console.log({ contentDirectoryPageNamesFiltered });
+      if (!isPageVisuallyEditable()) {
         return;
       }
       const contentPageFilePath = path.join(contentDirPath, pageNameMd);
@@ -106,26 +148,22 @@ const locales = process.env.LOCALES?.split(",");
         // If this page is visually editable and has content blocks
         // Find the corresponding translation and add the translated value from the data file to the content block
         // Once we've looped over it's blocks we can write the file with the new transformed frontmatter
-        if (isPageVisuallyEditable) {
-          const pageContentBlocks = frontmatter.content_blocks;
-          if (pageContentBlocks) {
-            pageContentBlocks.forEach((block) => {
-              // This will return a value if it finds a new translation to write to data file,
-              // Otherwise undefined and there is nothing to write to data file
-              const newTranslations =
-                updateDeeplyNestedObjectsAndReturnTranslations(
-                  block,
-                  translationOriginalInMarkdown,
-                  pageTranslationData,
-                  baseJsonData,
-                  localesData
-                );
+        if (isPageVisuallyEditable()) {
+          // This will return a value if it finds a new translation to write to data file,
+          // Otherwise undefined and there is nothing to write to data file
+          const newTranslations =
+            updateDeeplyNestedObjectsAndReturnTranslations(
+              frontmatter,
+              locales,
+              translationOriginalInMarkdown,
+              pageTranslationData,
+              baseJsonData,
+              localesData
+            );
 
-              if (newTranslations) {
-                newTranslationsToWriteToLocaleDataFiles[translationKey] =
-                  newTranslations;
-              }
-            });
+          if (newTranslations) {
+            newTranslationsToWriteToLocaleDataFiles[translationKey] =
+              newTranslations;
           }
         }
       });
@@ -235,20 +273,16 @@ const locales = process.env.LOCALES?.split(",");
           // If this page is visually editable and has content blocks
           // Find the corresponding translation and add the translated value from the data file to the content block
           // Once we've looped over it's blocks we can write the file with the new transformed frontmatter
-          if (isPageVisuallyEditable) {
-            const pageContentBlocks = frontmatter.content_blocks;
-            if (pageContentBlocks) {
-              pageContentBlocks.forEach((block) => {
-                // This will return a value if it finds a new translation to write to data file,
-                // Otherwise undefined and there is nothing to write to data file
+          if (isPageVisuallyEditable()) {
+            // This will return a value if it finds a new translation to write to data file,
+            // Otherwise undefined and there is nothing to write to data file
 
-                updateDeeplyNestedTranslationObjects(
-                  block,
-                  translationOriginalInMarkdown,
-                  newPageTranslationData
-                );
-              });
-            }
+            updateDeeplyNestedTranslationObjects(
+              frontmatter,
+              locales,
+              translationOriginalInMarkdown,
+              newPageTranslationData
+            );
           }
         });
       }

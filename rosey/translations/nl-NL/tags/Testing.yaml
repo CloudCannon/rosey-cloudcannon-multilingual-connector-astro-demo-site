@@ -6,14 +6,14 @@ _inputs:
     options:
       place_groups_below: false
       groups:
-        - heading: Still to translate (de-DE)
+        - heading: Still to translate (nl-NL)
           comment: Text to translate on [tags/Testing/](tags/Testing/)
-          inputs: []
-        - heading: Already translated (de-DE)
-          comment: Text already translated on [tags/Testing/](tags/Testing/)
           inputs:
             - blog
             - rss-feed
+        - heading: Already translated (nl-NL)
+          comment: Text already translated on [tags/Testing/](tags/Testing/)
+          inputs: []
   blog:
     label: Blog
     hidden: false
@@ -26,5 +26,5 @@ _inputs:
     type: text
     options: {}
     comment: "[See on page](tags/Testing/#:~:text=RSS%20Feed)"
-blog: Blog
-rss-feed: RSS-Feed
+blog: ""
+rss-feed: ""

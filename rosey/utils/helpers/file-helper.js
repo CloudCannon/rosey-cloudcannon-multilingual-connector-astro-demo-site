@@ -43,4 +43,17 @@ async function readContentPage(filePath) {
   };
 }
 
-export { readFileWithFallback, readJsonFromFile, isDirectory, readContentPage };
+async function readConfigFile(configFilePath) {
+  const buffer = await fs.promises.readFile(configFilePath);
+  const fileData = buffer.toString("utf-8");
+  const configData = YAML.parse(fileData);
+  return configData;
+}
+
+export {
+  readFileWithFallback,
+  readJsonFromFile,
+  isDirectory,
+  readContentPage,
+  readConfigFile,
+};
