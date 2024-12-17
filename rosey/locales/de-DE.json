@@ -23,10 +23,6 @@
 		"original": "A demo site for the Rosey-CloudCannon Multilingual Connector for Astro.",
 		"value": "<p>Eine Demo-Site für den Rosey-CloudCannon Multilingual Connector für Astro.</p>\n"
 	},
-	"markdown:a-new-paragraph-to-test-this-still-works?-with-smartling-enabled": {
-		"original": "A <em>new</em> paragraph to test this still works? With Smartling enabled.",
-		"value": "<p>Ein <em>neuer</em> Absatz, um das zu testen, funktioniert noch? Wenn Smartling aktiviert ist.</p>\n"
-	},
 	"markdown:it's-cold-but-it's-beautiful-get-tough-with-it-get-strong-brown-is-such-a-nice-color": {
 		"original": "It's cold, but it's beautiful. Get tough with it, get strong. Brown is such a nice color.",
 		"value": "<p>Es ist kalt, aber es ist schön. Werden Sie hart damit, werden Sie stark. Braun ist so eine schöne Farbe.</p>\n"
