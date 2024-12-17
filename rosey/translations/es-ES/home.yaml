@@ -18,10 +18,10 @@ _inputs:
             - keep-what-you-need-delete-the-rest
             - markdown:a-demo-site-for-the-rosey-cloudcannon-multilingual-connector-for-astro
             - markdown:it's-cold-but-it's-beautiful-get-tough-with-it-get-strong-brown-is-such-a-nice-color
-            - markdown:smartling-has-either-had-a-change-or-is-busy?
             - markdown:that-is-when-you-can-experience-true-joy-when-you-have-no-fear-maybe-just-to-play-a-little-we'll-put-a-little-tree-here
             - markdown:they-say-everything-looks-better-with-odd-numbers-of-things-but-sometimes-i-put-even-numbers—just-to-upset-the-critics
             - markdown:this-content-and-it's-translations-are-editable-from-the-visual-editor-as-well-as-data-files-providing-an-easy-to-use-interface-for-non-technical-people-to-maintain-a-multilingual-site
+            - markdown:this-is-new-and-should-now-work
             - rosey-cloudcannon-multilingual-connector
             - rss-feed
   blog:
@@ -95,28 +95,6 @@ _inputs:
       icon: translate
       content: It's cold, but it's beautiful. Get tough with it, get strong. Brown is
         such a nice color.
-  markdown:smartling-has-either-had-a-change-or-is-busy?:
-    label: Smartling has either had a change or is bu...
-    hidden: false
-    type: markdown
-    options:
-      bold: true
-      format: p h1 h2 h3 h4
-      italic: true
-      link: true
-      undo: true
-      redo: true
-      removeformat: true
-      copyformatting: true
-      blockquote: true
-    comment: "[See on
-      page](https://wooden-fjord.cloudvent.net/#:~:text=Smartling%20has%20eithe\
-      r,or%20is%20busy)"
-    context:
-      open: false
-      title: Untranslated Text
-      icon: translate
-      content: Smartling has either had a change or is busy?
   markdown:that-is-when-you-can-experience-true-joy-when-you-have-no-fear-maybe-just-to-play-a-little-we'll-put-a-little-tree-here:
     label: That is when you can experience true joy, ...
     hidden: false
@@ -187,6 +165,23 @@ _inputs:
       content: This content and it's translations are editable from the visual editor,
         as well as data files, providing an easy to use interface for
         non-technical people to maintain a multilingual site.
+  markdown:this-is-new-and-should-now-work:
+    label: This is new and should _now_ work.
+    hidden: false
+    type: markdown
+    options:
+      bold: true
+      format: p h1 h2 h3 h4
+      italic: true
+      link: true
+      undo: true
+      redo: true
+      removeformat: true
+      copyformatting: true
+      blockquote: true
+    comment: "[See on
+      page](https://wooden-fjord.cloudvent.net/#:~:text=This%20is%20new,should%\
+      20_now_%20work)"
   rosey-cloudcannon-multilingual-connector:
     label: Rosey - CloudCannon Multilingual Connector
     hidden: false
@@ -211,7 +206,6 @@ markdown:a-demo-site-for-the-rosey-cloudcannon-multilingual-connector-for-astro:
 markdown:it's-cold-but-it's-beautiful-get-tough-with-it-get-strong-brown-is-such-a-nice-color:
   Hace frío, pero es hermoso. Sé duro con eso, hazte fuerte. El marrón es un
   color muy bonito.
-markdown:smartling-has-either-had-a-change-or-is-busy?: ¿Smartling ha tenido un cambio o está ocupado?
 markdown:that-is-when-you-can-experience-true-joy-when-you-have-no-fear-maybe-just-to-play-a-little-we'll-put-a-little-tree-here:
   Ahí es cuando puedes experimentar **la verdadera** **alegría**, cuando no
   tienes miedo. Quizás, solo para jugar un poco, pongamos un arbolito aquí.
@@ -222,5 +216,6 @@ markdown:this-content-and-it's-translations-are-editable-from-the-visual-editor-
   Este contenido y sus traducciones son editables desde el editor visual, así
   como los archivos de datos, proporcionando una interfaz fácil de usar para que
   las personas sin conocimientos técnicos mantengan un sitio multilingüe.
+markdown:this-is-new-and-should-now-work: Esto es **nuevo** y _ahora_ debería funcionar.
 rosey-cloudcannon-multilingual-connector: " Rosey - Conector multilingüe CloudCannon "
 rss-feed: Fuente RSS
