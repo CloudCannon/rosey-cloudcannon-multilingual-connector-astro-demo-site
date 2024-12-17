@@ -2,17 +2,16 @@ locales:
   - es-ES
   - de-DE
   - fr-FR
-  - nl-NL
-base_url: ''
+base_url: https://wooden-fjord.cloudvent.net/
 rosey_paths:
   rosey_base_file_path: ./rosey/base.json
   rosey_base_urls_file_path: ./rosey/base.urls.json
   translations_dir_path: ./rosey/translations
   locales_dir_path: ./rosey/locales
 smartling:
-  smartling_enabled: false
-  dev_project_id:
-  dev_user_identifier:
+  smartling_enabled: true
+  dev_project_id: 403ba8439
+  dev_user_identifier: widgoyosxtbfsfonzlcfejabgndxst
   ping_interval: 20000
   ping_maximum: 6
   pings_to_wait_for_auth: 3
