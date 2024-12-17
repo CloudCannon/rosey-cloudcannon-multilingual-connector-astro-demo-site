@@ -142,26 +142,21 @@ const nhm = new NodeHtmlMarkdown(
         // Find the corresponding translation and add the translated value from the data file to the content block
         // Once we've looped over it's blocks we can write the file with the new transformed frontmatter
         if (isPageVisuallyEditable()) {
-          const pageContentBlocks = frontmatter.content_blocks;
-          if (pageContentBlocks) {
-            pageContentBlocks.forEach((block) => {
-              // This will return a value if it finds a new translation to write to data file,
-              // Otherwise undefined and there is nothing to write to data file
-              const newTranslations =
-                updateDeeplyNestedObjectsAndReturnTranslations(
-                  block,
-                  locales,
-                  translationOriginalInMarkdown,
-                  pageTranslationData,
-                  baseJsonData,
-                  localesData
-                );
+          // This will return a value if it finds a new translation to write to data file,
+          // Otherwise undefined and there is nothing to write to data file
+          const newTranslations =
+            updateDeeplyNestedObjectsAndReturnTranslations(
+              frontmatter,
+              locales,
+              translationOriginalInMarkdown,
+              pageTranslationData,
+              baseJsonData,
+              localesData
+            );
 
-              if (newTranslations) {
-                newTranslationsToWriteToLocaleDataFiles[translationKey] =
-                  newTranslations;
-              }
-            });
+          if (newTranslations) {
+            newTranslationsToWriteToLocaleDataFiles[translationKey] =
+              newTranslations;
           }
         }
       });
@@ -272,20 +267,15 @@ const nhm = new NodeHtmlMarkdown(
           // Find the corresponding translation and add the translated value from the data file to the content block
           // Once we've looped over it's blocks we can write the file with the new transformed frontmatter
           if (isPageVisuallyEditable()) {
-            const pageContentBlocks = frontmatter.content_blocks;
-            if (pageContentBlocks) {
-              pageContentBlocks.forEach((block) => {
-                // This will return a value if it finds a new translation to write to data file,
-                // Otherwise undefined and there is nothing to write to data file
+            // This will return a value if it finds a new translation to write to data file,
+            // Otherwise undefined and there is nothing to write to data file
 
-                updateDeeplyNestedTranslationObjects(
-                  block,
-                  locales,
-                  translationOriginalInMarkdown,
-                  newPageTranslationData
-                );
-              });
-            }
+            updateDeeplyNestedTranslationObjects(
+              frontmatter,
+              locales,
+              translationOriginalInMarkdown,
+              newPageTranslationData
+            );
           }
         });
       }

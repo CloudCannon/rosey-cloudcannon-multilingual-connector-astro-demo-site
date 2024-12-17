@@ -44,7 +44,8 @@ content_blocks:
 
 
           I love to talk. On these rides. Mind on the road; your dilated eyes.
-          Kept my mouth closed. We felt so familiar.
+          Kept my mouth closed. We felt so familiar. Does this work post
+          refactor?
         es_ES_translation: >-
           Un sitio de demostración para el conector multilingüe
           Rosey-CloudCannon para Astro.
@@ -57,7 +58,8 @@ content_blocks:
 
 
           Me encanta hablar. En estos paseos. Mente en el camino; tus ojos
-          dilatados. Mantuve la boca cerrada. Nos sentimos muy familiares.
+          dilatados. Mantuve la boca cerrada. Nos sentimos muy familiares. ¿Este
+          trabajo después de la refactorización?
         de_DE_translation: >-
           Eine Demo-Site für den Rosey-CloudCannon Multilingual Connector für
           Astro.
@@ -71,7 +73,7 @@ content_blocks:
 
           Ich liebe es zu reden. Auf diesen Fahrten. Geist auf der Straße; deine
           geweiteten Augen. Hielt meinen Mund geschlossen. Wir fühlten uns so
-          vertraut.
+          vertraut. Funktioniert das nach dem Refactoring?
         fr_FR_translation: >-
           Un site de démonstration pour le connecteur multilingue
           Rosey-CloudCannon pour Astro.
@@ -85,6 +87,7 @@ content_blocks:
 
           J'aime parler. Sur ces trajets. L'esprit sur la route ; vos yeux
           dilatés. J'ai gardé la bouche fermée. Nous nous sentions si familiers.
+          Cela fonctionne-t-il après le remaniement ?
       color: "#393939"
     image:
       image_path: /src/assets/images/featured-image-5.jpg

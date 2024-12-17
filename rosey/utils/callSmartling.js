@@ -32,7 +32,7 @@ dotenv.config();
   const userSecret = process.env.DEV_USER_SECRET;
   const projectId = configData.smartling.dev_project_id;
   const userId = configData.smartling.dev_user_identifier;
-  const smartlingTranslateEnabled = configData.smartling.enabled;
+  const smartlingTranslateEnabled = configData.smartling.smartling_enabled;
   const authRequestData = {
     userIdentifier: userId,
     userSecret: userSecret,
