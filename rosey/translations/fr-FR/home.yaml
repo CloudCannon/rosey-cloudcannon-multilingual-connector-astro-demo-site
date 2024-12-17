@@ -21,7 +21,6 @@ _inputs:
             - markdown:that-is-when-you-can-experience-true-joy-when-you-have-no-fear-maybe-just-to-play-a-little-we'll-put-a-little-tree-here
             - markdown:they-say-everything-looks-better-with-odd-numbers-of-things-but-sometimes-i-put-even-numbers—just-to-upset-the-critics
             - markdown:this-content-and-it's-translations-are-editable-from-the-visual-editor-as-well-as-data-files-providing-an-easy-to-use-interface-for-non-technical-people-to-maintain-a-multilingual-site
-            - markdown:this-is-new-and-should-now-work
             - rosey-cloudcannon-multilingual-connector
             - rss-feed
   blog:
@@ -165,23 +164,6 @@ _inputs:
       content: This content and it's translations are editable from the visual editor,
         as well as data files, providing an easy to use interface for
         non-technical people to maintain a multilingual site.
-  markdown:this-is-new-and-should-now-work:
-    label: This is new and should _now_ work.
-    hidden: false
-    type: markdown
-    options:
-      bold: true
-      format: p h1 h2 h3 h4
-      italic: true
-      link: true
-      undo: true
-      redo: true
-      removeformat: true
-      copyformatting: true
-      blockquote: true
-    comment: "[See on
-      page](https://wooden-fjord.cloudvent.net/#:~:text=This%20is%20new,should%\
-      20_now_%20work)"
   rosey-cloudcannon-multilingual-connector:
     label: Rosey - CloudCannon Multilingual Connector
     hidden: false
@@ -217,6 +199,5 @@ markdown:this-content-and-it's-translations-are-editable-from-the-visual-editor-
   de même que les fichiers de données, ce qui constitue une interface facile à
   utiliser pour les personnes non spécialisées dans la gestion d'un site
   multilingue.
-markdown:this-is-new-and-should-now-work: Il s'agit d'une **nouveauté** qui devrait *désormais* fonctionner.
 rosey-cloudcannon-multilingual-connector: " Rosey - Connecteur multilingue CloudCannon "
 rss-feed: Flux RSS
