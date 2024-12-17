@@ -17,6 +17,7 @@ _inputs:
             - github
             - keep-what-you-need-delete-the-rest
             - markdown:a-demo-site-for-the-rosey-cloudcannon-multilingual-connector-for-astro
+            - markdown:i-love-to-talk-on-these-rides-mind-on-the-road;-your-dilated-eyes-kept-my-mouth-closed-we-felt-so-familiar
             - markdown:it's-cold-but-it's-beautiful-get-tough-with-it-get-strong-brown-is-such-a-nice-color
             - markdown:that-is-when-you-can-experience-true-joy-when-you-have-no-fear-maybe-just-to-play-a-little-we'll-put-a-little-tree-here
             - markdown:they-say-everything-looks-better-with-odd-numbers-of-things-but-sometimes-i-put-even-numbers—just-to-upset-the-critics
@@ -71,6 +72,29 @@ _inputs:
       title: Untranslated Text
       icon: translate
       content: A demo site for the Rosey-CloudCannon Multilingual Connector for Astro.
+  markdown:i-love-to-talk-on-these-rides-mind-on-the-road;-your-dilated-eyes-kept-my-mouth-closed-we-felt-so-familiar:
+    label: I love to talk. On these rides. Mind on th...
+    hidden: false
+    type: markdown
+    options:
+      bold: true
+      format: p h1 h2 h3 h4
+      italic: true
+      link: true
+      undo: true
+      redo: true
+      removeformat: true
+      copyformatting: true
+      blockquote: true
+    comment: "[See on
+      page](https://wooden-fjord.cloudvent.net/#:~:text=I%20love%20to,felt%20so\
+      %20familiar)"
+    context:
+      open: false
+      title: Untranslated Text
+      icon: translate
+      content: I love to talk. On these rides. Mind on the road; your dilated eyes.
+        Kept my mouth closed. We felt so familiar.
   markdown:it's-cold-but-it's-beautiful-get-tough-with-it-get-strong-brown-is-such-a-nice-color:
     label: It's cold, but it's beautiful. Get tough w...
     hidden: false
@@ -183,6 +207,9 @@ cloudcannon: CloudCannon
 github: GitHub (Englisch)
 keep-what-you-need-delete-the-rest: Behalten Sie, was Sie brauchen Löschen Sie den Rest
 markdown:a-demo-site-for-the-rosey-cloudcannon-multilingual-connector-for-astro: Eine Demo-Site für den Rosey-CloudCannon Multilingual Connector für Astro.
+markdown:i-love-to-talk-on-these-rides-mind-on-the-road;-your-dilated-eyes-kept-my-mouth-closed-we-felt-so-familiar:
+  Ich liebe es zu reden. Auf diesen Fahrten. Geist auf der Straße; deine
+  geweiteten Augen. Hielt meinen Mund geschlossen. Wir fühlten uns so vertraut.
 markdown:it's-cold-but-it's-beautiful-get-tough-with-it-get-strong-brown-is-such-a-nice-color:
   Es ist kalt, aber es ist schön. Werden Sie hart damit, werden Sie stark. Braun
   ist so eine schöne Farbe.
