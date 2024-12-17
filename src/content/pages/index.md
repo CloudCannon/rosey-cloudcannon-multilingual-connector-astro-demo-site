@@ -2,17 +2,16 @@
 _schema: page
 title: Home
 seo:
-  page_description: >-
-    A starting point for developers looking to build a multilingual website with
-    Astro and Rosey, using Bookshop components in CloudCannon. CloudCannon
-    provides a UI for non-technical editors to enter translations. Create your
-    own copy, and start creating your own components to use in the CloudCannon
-    CMS.
-  canonical_url:
-  featured_image:
-  featured_image_alt:
-  author_twitter_handle:
-  open_graph_type:
+  page_description: A starting point for developers looking to build a
+    multilingual website with Astro and Rosey, using Bookshop components in
+    CloudCannon. CloudCannon provides a UI for non-technical editors to enter
+    translations. Create your own copy, and start creating your own components
+    to use in the CloudCannon CMS.
+  canonical_url: null
+  featured_image: null
+  featured_image_alt: null
+  author_twitter_handle: null
+  open_graph_type: null
   no_index: false
 translations:
   selected_page_translation: None
@@ -24,14 +23,14 @@ translations:
   url_translation_fr_FR: index.html
 content_blocks:
   - _bookshop_name: hero
-    background_color: '#ffffff'
+    background_color: "#ffffff"
     heading:
       heading_text:
         original: Rosey - CloudCannon Multilingual Connector
-        es_ES_translation: ' Rosey - Conector multilingüe CloudCannon '
-        de_DE_translation: ' Rosey - CloudCannon Mehrsprachiger Konnektor '
-        fr_FR_translation: ' Rosey - Connecteur multilingue CloudCannon '
-      heading_gradient_color: '#F7B2AD'
+        es_ES_translation: " Rosey - Conector multilingüe CloudCannon "
+        de_DE_translation: " Rosey - CloudCannon Mehrsprachiger Konnektor "
+        fr_FR_translation: " Rosey - Connecteur multilingue CloudCannon "
+      heading_gradient_color: "#F7B2AD"
     subheading:
       markdown_content:
         original: >-
@@ -47,7 +46,7 @@ content_blocks:
           I love to talk. On these rides. Mind on the road; your dilated eyes.
           Kept my mouth closed. We felt so familiar. White *ferrari*, **good**
           times.
-        es_ES_translation: >-
+        es_ES_translation: >+
           Un sitio de demostración para el conector multilingüe
           Rosey-CloudCannon para Astro.
 
@@ -56,7 +55,8 @@ content_blocks:
           visual, así como los archivos de datos, proporcionando una interfaz
           fácil de usar para que las personas sin conocimientos técnicos
           mantengan un sitio multilingüe.
-        de_DE_translation: >-
+
+        de_DE_translation: >+
           Eine Demo-Site für den Rosey-CloudCannon Multilingual Connector für
           Astro.
 
@@ -65,7 +65,8 @@ content_blocks:
           bearbeitet werden, ebenso wie Datendateien, die eine einfach zu
           bedienende Oberfläche für nicht-technische Personen bieten, um eine
           mehrsprachige Website zu pflegen.
-        fr_FR_translation: >-
+
+        fr_FR_translation: >+
           Un site de démonstration pour le connecteur multilingue
           Rosey-CloudCannon pour Astro.
 
@@ -74,7 +75,8 @@ content_blocks:
           visuel, de même que les fichiers de données, ce qui constitue une
           interface facile à utiliser pour les personnes non spécialisées dans
           la gestion d'un site multilingue.
-      color: '#393939'
+
+      color: "#393939"
     image:
       image_path: /src/assets/images/featured-image-5.jpg
       alt_text: A placeholder image
@@ -87,9 +89,9 @@ content_blocks:
           fr_FR_translation: GitHub
         button_icon: Github
         button_link: https://github.com/cloudCannon/rosey-astro-starter
-        background_color: '#034AD8'
+        background_color: "#034AD8"
         hover_brightness: 0.85
-        text_color: '#ffffff'
+        text_color: "#ffffff"
       - _bookshop_name: buttons/secondary
         button_text:
           original: CloudCannon
@@ -98,17 +100,17 @@ content_blocks:
           fr_FR_translation: CloudCannon
         button_icon: CloudCannon
         button_link: https://www.cloudcannon.com
-        text_color: '#034AD8'
+        text_color: "#034AD8"
         hover_brightness: 0.95
   - _bookshop_name: left-right
-    background_color: '#c8d5b9'
+    background_color: "#c8d5b9"
     heading:
       heading_text:
         original: Keep what you need. Delete the rest.
         es_ES_translation: Conserva lo que necesitas Elimina el resto
         de_DE_translation: Behalten Sie, was Sie brauchen Löschen Sie den Rest
         fr_FR_translation: Gardez ce dont vous avez besoin Supprimez le reste
-      color: '#393939'
+      color: "#393939"
     text:
       markdown_content:
         original: >-
@@ -160,11 +162,12 @@ content_blocks:
 
           Il fait froid, mais c'est beau. Il faut s'endurcir, devenir fort. Le
           marron est une couleur très agréable.
-      color: '#393939'
+      color: "#393939"
     media:
-      image_path:
+      image_path: null
       youtube_path: https://www.youtube.com/embed/u5WittUT3Ts?si=BjBfbF-x5MoaAyVO
       alt_text: An image
     flipped: true
-    button:
+    button: null
+
 ---
