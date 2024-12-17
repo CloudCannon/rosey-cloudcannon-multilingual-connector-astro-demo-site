@@ -27,10 +27,6 @@
 		"original": "It's cold, but it's beautiful. Get tough with it, get strong. Brown is such a nice color.",
 		"value": "<p>Es ist kalt, aber es ist schön. Werden Sie hart damit, werden Sie stark. Braun ist so eine schöne Farbe.</p>\n"
 	},
-	"markdown:testing-this-still-works-on-the-cloudcannon-demo-site": {
-		"original": "Testing this <strong>still</strong> works on the CloudCannon demo site.",
-		"value": "<p>Das Testen funktioniert <strong>immer noch</strong> auf der CloudCannon-Demoseite.</p>\n"
-	},
 	"markdown:that-is-when-you-can-experience-true-joy-when-you-have-no-fear-maybe-just-to-play-a-little-we'll-put-a-little-tree-here": {
 		"original": "That is when you can experience <strong>true</strong> <strong>joy</strong>, when you have no fear. Maybe, just to play a little, we'll put a little tree here.",
 		"value": "<p>Das ist, wenn du <strong>wahre</strong> <strong>Freude</strong> erleben kannst, wenn du keine Angst hast. Vielleicht, nur um ein bisschen zu spielen, stellen wir hier einen kleinen Baum auf.</p>\n"

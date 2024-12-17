@@ -101,14 +101,6 @@
       },
       "total": 1
     },
-    "markdown:testing-this-still-works-on-the-cloudcannon-demo-site": {
-      "original": "Testing this <strong>still</strong> works on the CloudCannon demo site.",
-      "value": null,
-      "pages": {
-        "index.html": 1
-      },
-      "total": 1
-    },
     "markdown:that-is-when-you-can-experience-true-joy-when-you-have-no-fear-maybe-just-to-play-a-little-we'll-put-a-little-tree-here": {
       "original": "That is when you can experience <strong>true</strong> <strong>joy</strong>, when you have no fear. Maybe, just to play a little, we'll put a little tree here.",
       "value": null,
