@@ -101,9 +101,9 @@ collections_config:
     disable_file_actions: true
   translations_config:
     path: rosey
+    icon: settings
     glob:
       - config.yaml
-    icon: translate
     disable_add: false
     disable_add_folder: true
     disable_file_actions: true
