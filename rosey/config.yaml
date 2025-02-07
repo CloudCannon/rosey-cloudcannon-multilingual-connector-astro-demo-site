@@ -38,6 +38,7 @@ tagged_body_content_elements:
   - h4
   - h5
   - h6
+
 _inputs:
   locales:
     type: array
