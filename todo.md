@@ -1,0 +1,14 @@
+- Finish the config file
+  - The commented out keys aren't doing anything yet
+  - Need to test that, after all the changes to use the config file, everything still works
+- Add generation of translation file for 'orphaned' translations
+- Add generation of shared phrases translation file
+  - Can keep them on their individual pages and use the existing overwrite workflow to keep them in sync
+- Add to readme about
+  - Visual editor translations
+  - Initial set up
+  - Transferring to an existing site
+  - Link to the features on Astro starter for extra features
+- Chase up CC update for mistaken 'Awaiting page translations'
+- Record a new intro youtube video
+- Tests

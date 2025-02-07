@@ -20,24 +20,24 @@ smartling:
   outgoing_translations_file_path: ./rosey/outgoing-smartling-translations.json
   outgoing_translation_file_uri: /rosey/translations/
 visual_editing:
-  visual_editor_syncing_enabled: true
-  display_orphaned_translations: true
+  # visual_editor_syncing_enabled: true
+  # display_orphaned_translations: true
   content_directory: ./src/content
   excluded_files:
     - config.ts
-  translations_object_name: translations
+  # translations_object_name: translations
   migrator_settings:
-    migrator_enabled: false
+    # migrator_enabled: false
     components_directory: ./src/components
-tagged_body_content_elements:
-  - p
-  - li
-  - h1
-  - h2
-  - h3
-  - h4
-  - h5
-  - h6
+# tagged_body_content_elements:
+#   - p
+#   - li
+#   - h1
+#   - h2
+#   - h3
+#   - h4
+#   - h5
+#   - h6
 
 _inputs:
   locales:
