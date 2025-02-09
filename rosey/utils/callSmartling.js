@@ -72,7 +72,7 @@ dotenv.config();
         // Check pages frontmatter to see if we should translate
         const fileRawData = await readFileWithFallback(filePath);
         const fileFrontmatter = YAML.parse(fileRawData.split("---")[1]);
-        const pageTranslationsConfig = fileFrontmatter.translations;
+        const pageTranslationsConfig = fileFrontmatter.translations ?? {};
         const pageTranslationsConfigKeys = Object.keys(pageTranslationsConfig);
         // Check frontmatter translations obj
         // Check if any of the one's that aren't selected translation are true
