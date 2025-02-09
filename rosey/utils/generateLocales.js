@@ -88,7 +88,7 @@ async function generateLocale(locale, configData) {
         // Check pages frontmatter to see if we should translate
         const fileRawData = await readFileWithFallback(filePath);
         const fileFrontmatter = YAML.parse(fileRawData.split("---")[1]);
-        const pageTranslationsConfig = fileFrontmatter.translations;
+        const pageTranslationsConfig = fileFrontmatter.translations ?? {};
         const fileAsHtmlName = file
           .replace("pages/", "")
           .replace("index.md", "index.html")
